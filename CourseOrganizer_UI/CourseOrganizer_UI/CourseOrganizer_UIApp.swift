@@ -1,14 +1,14 @@
 //
-//  CourseOrganizerApp.swift
-//  Shared
+//  CourseOrganizer_UIApp.swift
+//  CourseOrganizer_UI
 //
-//  Created by Giang Nguyen on 10/12/22.
+//  Created by Kai on 10/22/22.
 //
 
 import SwiftUI
 
 @main
-struct CourseOrganizerApp: App {
+struct CourseOrganizer_UIApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
