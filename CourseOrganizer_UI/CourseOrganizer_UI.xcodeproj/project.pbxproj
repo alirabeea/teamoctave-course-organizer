@@ -11,6 +11,11 @@
 		2ADE30E229046B92005CA601 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE30E129046B92005CA601 /* ContentView.swift */; };
 		2ADE30E429046B93005CA601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE30E329046B93005CA601 /* Assets.xcassets */; };
 		2ADE30E729046B93005CA601 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE30E629046B93005CA601 /* Preview Assets.xcassets */; };
+		B88F2DD32905EE1500AB9399 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD22905EE1500AB9399 /* Credentials.swift */; };
+		B88F2DD62905EE5400AB9399 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD52905EE5400AB9399 /* APIService.swift */; };
+		B88F2DD82905EF5700AB9399 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */; };
+		B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD92905F08D00AB9399 /* LoginView.swift */; };
+		B88F2DDC2905F31700AB9399 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DDB2905F31700AB9399 /* Authentication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		2ADE30E129046B92005CA601 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2ADE30E329046B93005CA601 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2ADE30E629046B93005CA601 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B88F2DD22905EE1500AB9399 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		B88F2DD52905EE5400AB9399 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B88F2DD92905F08D00AB9399 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B88F2DDB2905F31700AB9399 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +61,11 @@
 		2ADE30DE29046B92005CA601 /* CourseOrganizer_UI */ = {
 			isa = PBXGroup;
 			children = (
+				B88F2DDB2905F31700AB9399 /* Authentication.swift */,
+				B88F2DD42905EE4700AB9399 /* Services */,
+				B88F2DD12905EE0700AB9399 /* Models */,
+				B88F2DD02905EDF100AB9399 /* Views */,
 				2ADE30DF29046B92005CA601 /* CourseOrganizer_UIApp.swift */,
-				2ADE30E129046B92005CA601 /* ContentView.swift */,
 				2ADE30E329046B93005CA601 /* Assets.xcassets */,
 				2ADE30E529046B93005CA601 /* Preview Content */,
 			);
@@ -65,6 +78,32 @@
 				2ADE30E629046B93005CA601 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B88F2DD02905EDF100AB9399 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2ADE30E129046B92005CA601 /* ContentView.swift */,
+				B88F2DD92905F08D00AB9399 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B88F2DD12905EE0700AB9399 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B88F2DD22905EE1500AB9399 /* Credentials.swift */,
+				B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B88F2DD42905EE4700AB9399 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B88F2DD52905EE5400AB9399 /* APIService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +176,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B88F2DDC2905F31700AB9399 /* Authentication.swift in Sources */,
+				B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */,
+				B88F2DD32905EE1500AB9399 /* Credentials.swift in Sources */,
 				2ADE30E229046B92005CA601 /* ContentView.swift in Sources */,
+				B88F2DD62905EE5400AB9399 /* APIService.swift in Sources */,
+				B88F2DD82905EF5700AB9399 /* LoginViewModel.swift in Sources */,
 				2ADE30E029046B92005CA601 /* CourseOrganizer_UIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
