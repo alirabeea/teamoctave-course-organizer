@@ -16,6 +16,10 @@
 		B88F2DD82905EF5700AB9399 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */; };
 		B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DD92905F08D00AB9399 /* LoginView.swift */; };
 		B88F2DDC2905F31700AB9399 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DDB2905F31700AB9399 /* Authentication.swift */; };
+		B88F2DDE290748FE00AB9399 /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DDD290748FE00AB9399 /* RequirementsView.swift */; };
+		B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DDF2907491100AB9399 /* FindCoursesView.swift */; };
+		B88F2DE229074B8C00AB9399 /* InterestedCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */; };
+		B88F2DE429074BE600AB9399 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE329074BE600AB9399 /* UserView.swift */; };
 		E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107886C2906588B00DA5403 /* ViewRouter.swift */; };
 		E107887129065C0E00DA5403 /* InputCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107887029065C0E00DA5403 /* InputCourse.swift */; };
 		E10788732906629400DA5403 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10788722906629400DA5403 /* MainView.swift */; };
@@ -32,6 +36,10 @@
 		B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B88F2DD92905F08D00AB9399 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B88F2DDB2905F31700AB9399 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		B88F2DDD290748FE00AB9399 /* RequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsView.swift; sourceTree = "<group>"; };
+		B88F2DDF2907491100AB9399 /* FindCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCoursesView.swift; sourceTree = "<group>"; };
+		B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCoursesView.swift; sourceTree = "<group>"; };
+		B88F2DE329074BE600AB9399 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		E107886C2906588B00DA5403 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E107887029065C0E00DA5403 /* InputCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCourse.swift; sourceTree = "<group>"; };
 		E10788722906629400DA5403 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -94,6 +102,10 @@
 				B88F2DD92905F08D00AB9399 /* LoginView.swift */,
 				E107887029065C0E00DA5403 /* InputCourse.swift */,
 				E10788722906629400DA5403 /* MainView.swift */,
+				B88F2DDD290748FE00AB9399 /* RequirementsView.swift */,
+				B88F2DDF2907491100AB9399 /* FindCoursesView.swift */,
+				B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */,
+				B88F2DE329074BE600AB9399 /* UserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,15 +198,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88F2DDC2905F31700AB9399 /* Authentication.swift in Sources */,
+				B88F2DE229074B8C00AB9399 /* InterestedCoursesView.swift in Sources */,
 				E107887129065C0E00DA5403 /* InputCourse.swift in Sources */,
 				B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */,
 				E10788732906629400DA5403 /* MainView.swift in Sources */,
+				B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */,
 				B88F2DD32905EE1500AB9399 /* Credentials.swift in Sources */,
+				B88F2DDE290748FE00AB9399 /* RequirementsView.swift in Sources */,
 				2ADE30E229046B92005CA601 /* ContentView.swift in Sources */,
 				B88F2DD62905EE5400AB9399 /* APIService.swift in Sources */,
 				B88F2DD82905EF5700AB9399 /* LoginViewModel.swift in Sources */,
 				2ADE30E029046B92005CA601 /* CourseOrganizer_UIApp.swift in Sources */,
 				E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */,
+				B88F2DE429074BE600AB9399 /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

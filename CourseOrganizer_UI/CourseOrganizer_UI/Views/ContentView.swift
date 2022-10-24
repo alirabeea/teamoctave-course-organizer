@@ -9,46 +9,41 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Welcome!")
-
-            HStack {
-                Button (action:{
-                print("Directing to Requirements")
-            }) {
-                Image("Requirements")
-                    .renderingMode(.original)
-                    .buttonStyle(DirectingButton())
-            }.frame(alignment: .bottom)
-                Button (action:{
-                    print("Directing to Find Courses")
-                }) {
-                    Image("LookCourses")
-                        .renderingMode(.original)
-                        .buttonStyle(DirectingButton())
-                }.frame(alignment: .bottom)
+        NavigationView {
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                Text("Welcome!")
                 
-                Button (action:{
-                    print("Directing to Interested Course")
-                }) {
-                    Image("StarCourses")
-                        .renderingMode(.original)
-                        .buttonStyle(DirectingButton())
-                }.frame(alignment: .bottom)
-                
-                Button (action: {
-                    //viewRouter.currentScreen = .inputCourse;
-                }) {
-                    Image("User")
-                        .renderingMode(.original)
-                        .buttonStyle(UserButton())
+                HStack {
+                    NavigationLink (destination: RequirementsView()){
+                        Image("Requirements")
+                            .renderingMode(.original)
+                            .buttonStyle(DirectingButton())
+                    }.frame(alignment: .bottom)
+    
+                    NavigationLink(destination: FindCoursesView()){
+                            Image("LookCourses")
+                            .renderingMode(.original)
+                            .buttonStyle(DirectingButton())
+                        }.frame(alignment: .bottom)
+                    
+                    NavigationLink(destination: InterestedCoursesView()){
+                        Image("StarCourses")
+                            .renderingMode(.original)
+                            .buttonStyle(DirectingButton())
+                    }.frame(alignment: .bottom)
+                    
+                    NavigationLink(destination: UserView()){
+                        Image("User")
+                            .renderingMode(.original)
+                            .buttonStyle(UserButton())
+                    }.frame(alignment: .bottom)
                 }
             }
+            .padding()
         }
-        .padding()
     }
 }
 
