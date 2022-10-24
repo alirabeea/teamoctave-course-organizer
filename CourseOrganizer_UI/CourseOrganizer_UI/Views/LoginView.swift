@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var loginVM = LoginViewModel()
-    @EnvironmentObject var authentication: Authentication
+    @StateObject var authentication = Authentication()
+    @EnvironmentObject var viewRouter: ViewRouter
     var body: some View {
         VStack {
             Text("Course Organizer")
@@ -39,8 +40,15 @@ struct LoginView: View {
             .frame(width: 300, height: 50)
             .background(Color.blue)
             .cornerRadius(10)
-          
             .disabled(loginVM.loginDisabled)
+            .onTapGesture {
+                // change this line when authentication is implemented
+                if !authentication.isValidated {
+                    viewRouter.currentScreen = .contentView;
+                } else {
+                    viewRouter.currentScreen = .loginView;
+                }
+            }
             Spacer()
         }
         .autocapitalization(.none)
@@ -51,6 +59,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(ViewRouter()).environmentObject(Authentication())
     }
 }
