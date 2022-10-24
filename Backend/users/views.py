@@ -1,6 +1,6 @@
 from urllib import response
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from .models import User 
 # from django.http import HttpRequest
@@ -31,3 +31,6 @@ def log_in(request):
         return HttpResponse('success')
     else:
         return HttpResponse('-1')
+
+def test(request):
+    return JsonResponse({"data": "Hello World!"})
