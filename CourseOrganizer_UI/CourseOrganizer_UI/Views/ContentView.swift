@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var viewRouter: ViewRouter;
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -41,7 +40,7 @@ struct ContentView: View {
                 }.frame(alignment: .bottom)
                 
                 Button (action: {
-                    viewRouter.currentScreen = .inputCourse;
+                    //viewRouter.currentScreen = .inputCourse;
                 }) {
                     Image("User")
                         .renderingMode(.original)
@@ -74,6 +73,6 @@ struct DirectingButton: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(ViewRouter())
+        ContentView()
     }
 }

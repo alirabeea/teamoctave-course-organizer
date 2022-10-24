@@ -9,18 +9,16 @@ import SwiftUI
 
 @main
 struct CourseOrganizer_UIApp: App {
-    @EnvironmentObject var authentication: Authentication
+    @StateObject var authentication = Authentication()
     var body: some Scene {
         WindowGroup {
-// moved to login view login button
-//            if authentication.isValidated {
-//                ContentView()
-//                    .environmentObject(authentication)
-//            }else{
-//                LoginView()
-//                    .environmentObject(authentication)
-//            }
-            MainView();
+            if authentication.isValidated {
+                ContentView()
+                    .environmentObject(authentication)
+            }else{
+                LoginView()
+                    .environmentObject(authentication)
+            }
         }
     }
 }
