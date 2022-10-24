@@ -9,7 +9,11 @@ import SwiftUI
 
 struct InterestedCoursesView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("Interested Courses")
+                .font(.largeTitle)
+            Spacer()
+        }
     }
 }
 
