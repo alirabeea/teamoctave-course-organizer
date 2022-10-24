@@ -3,6 +3,8 @@ from courses.models import Course
 
 # Create your models here.
 class User(models.Model):
+    username = models.CharField(max_length=64)
+    password = models.CharField(max_length=64)
     name = models.CharField(max_length=64)
     netid = models.CharField(max_length=64)
 
