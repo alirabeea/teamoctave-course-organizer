@@ -54,6 +54,10 @@ struct LoginView: View {
         .disabled(loginVM.showProgressView)
     }
     
+    struct Message: Decodable {
+        let data: String;
+    }
+    
     func loadAccount() {
         guard let url = URL(string: "http://127.0.0.1:8000/users/test/") else {
             print("api is down")
@@ -65,9 +69,10 @@ struct LoginView: View {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                if let response = try? JSONDecoder().decode([String].self, from: data) {
+                if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
                     DispatchQueue.main.async {
-                        message = response[0];
+                        message = response.data;
+                        print(response.data);
                     }
                     return
                 }
