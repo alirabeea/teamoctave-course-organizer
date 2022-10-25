@@ -12,46 +12,56 @@ struct LoginView: View {
     @EnvironmentObject var authentication: Authentication
     @State var message: String = "";
     var body: some View {
-        VStack {
-            Text("Course Organizer")
-                .font(.largeTitle)
-                .bold()
-                .padding()
-            TextField("Email", text: $loginVM.credentials.email)
-                .padding()
-                .keyboardType(.emailAddress)
-                .frame(width: 300, height: 50)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-            SecureField("Password", text: $loginVM.credentials.password)
-                .padding()
-                .frame(width: 300, height: 50)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-            if loginVM.showProgressView {
-                ProgressView()
-            }
-            Button("Log In") {
-                loginVM.login { success in
-                    authentication.updateValidation(success: success)
+        NavigationView {
+            VStack {
+                Text("Course Organizer")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+                TextField("Email", text: $loginVM.credentials.email)
+                    .padding()
+                    .keyboardType(.emailAddress)
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                SecureField("Password", text: $loginVM.credentials.password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                if loginVM.showProgressView {
+                    ProgressView()
                 }
+                Button("Log In") {
+                    loginVM.login { success in
+                        authentication.updateValidation(success: success)
+                    }
+                }
+                .foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .onTapGesture {
+                    loadAccount();
+                }
+                .disabled(loginVM.loginDisabled)
+                
+                
+                NavigationLink(destination: SignUpView()){
+                    Text("Sign Up")
+                        .foregroundColor(.blue)
+                }
+                
+                
+                
+                Spacer()
+                Text("Message from server:")
+                Text(message)
             }
-            .foregroundColor(.white)
-            .frame(width: 300, height: 50)
-            .background(Color.blue)
-            .cornerRadius(10)
-            .onTapGesture {
-                loadAccount();
-            }
-          
-            .disabled(loginVM.loginDisabled)
-            Spacer()
-            Text("Message from server:")
-            Text(message)
+            .autocapitalization(.none)
+            .padding()
+            .disabled(loginVM.showProgressView)
         }
-        .autocapitalization(.none)
-        .padding()
-        .disabled(loginVM.showProgressView)
     }
     
     struct Message: Decodable {

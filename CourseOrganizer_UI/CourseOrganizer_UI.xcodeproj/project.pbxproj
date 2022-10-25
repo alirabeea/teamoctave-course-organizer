@@ -20,6 +20,9 @@
 		B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DDF2907491100AB9399 /* FindCoursesView.swift */; };
 		B88F2DE229074B8C00AB9399 /* InterestedCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */; };
 		B88F2DE429074BE600AB9399 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE329074BE600AB9399 /* UserView.swift */; };
+		B88F2DE62907521C00AB9399 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE52907521C00AB9399 /* SignUpView.swift */; };
+		B88F2DE829075EFE00AB9399 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DE729075EFE00AB9399 /* UserInfo.swift */; };
+		B88F2DEC29076D3300AB9399 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F2DEB29076D3300AB9399 /* UserViewModel.swift */; };
 		E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107886C2906588B00DA5403 /* ViewRouter.swift */; };
 		E107887129065C0E00DA5403 /* InputCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107887029065C0E00DA5403 /* InputCourse.swift */; };
 		E10788732906629400DA5403 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10788722906629400DA5403 /* MainView.swift */; };
@@ -40,6 +43,9 @@
 		B88F2DDF2907491100AB9399 /* FindCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindCoursesView.swift; sourceTree = "<group>"; };
 		B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestedCoursesView.swift; sourceTree = "<group>"; };
 		B88F2DE329074BE600AB9399 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		B88F2DE52907521C00AB9399 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		B88F2DE729075EFE00AB9399 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		B88F2DEB29076D3300AB9399 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		E107886C2906588B00DA5403 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E107887029065C0E00DA5403 /* InputCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCourse.swift; sourceTree = "<group>"; };
 		E10788722906629400DA5403 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -106,6 +112,7 @@
 				B88F2DDF2907491100AB9399 /* FindCoursesView.swift */,
 				B88F2DE129074B8C00AB9399 /* InterestedCoursesView.swift */,
 				B88F2DE329074BE600AB9399 /* UserView.swift */,
+				B88F2DE52907521C00AB9399 /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,6 +122,8 @@
 			children = (
 				B88F2DD22905EE1500AB9399 /* Credentials.swift */,
 				B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */,
+				B88F2DE729075EFE00AB9399 /* UserInfo.swift */,
+				B88F2DEB29076D3300AB9399 /* UserViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,8 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B88F2DDC2905F31700AB9399 /* Authentication.swift in Sources */,
+				B88F2DE62907521C00AB9399 /* SignUpView.swift in Sources */,
 				B88F2DE229074B8C00AB9399 /* InterestedCoursesView.swift in Sources */,
 				E107887129065C0E00DA5403 /* InputCourse.swift in Sources */,
+				B88F2DE829075EFE00AB9399 /* UserInfo.swift in Sources */,
 				B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */,
 				E10788732906629400DA5403 /* MainView.swift in Sources */,
 				B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */,
@@ -209,6 +220,7 @@
 				B88F2DD62905EE5400AB9399 /* APIService.swift in Sources */,
 				B88F2DD82905EF5700AB9399 /* LoginViewModel.swift in Sources */,
 				2ADE30E029046B92005CA601 /* CourseOrganizer_UIApp.swift in Sources */,
+				B88F2DEC29076D3300AB9399 /* UserViewModel.swift in Sources */,
 				E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */,
 				B88F2DE429074BE600AB9399 /* UserView.swift in Sources */,
 			);

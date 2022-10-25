@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct UserView: View {
+    @StateObject private var userVM = UserViewModel()
     var body: some View {
         VStack{
             Text("User Info")
                 .font(.largeTitle)
+            TextField("first name", text: $userVM.userInfo.firstName)
+            TextField("email", text: $userVM.userInfo.email)
+            
+            
             Spacer()
         }
     }
