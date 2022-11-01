@@ -1,36 +1,22 @@
-from urllib import response
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.views import View
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
+from .models import User
 
-from .models import User 
-# from django.http import HttpRequest
+class LoginView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({"status_code": 401})
 
-# Create your views here.
-def sign_up(request):
-    # Fetching information
-    output = request.GET
-    u= output['username']
-    p = output['password']
-    n = output['name']
-    i = output['id']
+    def post(self, request, *args, **kwargs):
+        user = authenticate(username=request.POST["username"], password=request.POST["password"])
+        if user is not None:
+            login(request, user)
+            return JsonResponse({"status": "Success!", "status_code": 201})
+        else:
+            return JsonResponse({"status": "Error!", "status_code": 401})
 
-    user_information = User.objects.all()
-    if user_information.count() != 0 and user_information.filter(username=u).exists():
-        return HttpResponse('-1')
-    else:
-        User.objects.create(username=u, password=p, name=n, id=i)
-    return HttpResponse('success')
-
-def log_in(request):
-    output = request.GET
-    username = output['username']
-    password = output['password']
-
-    user_information = User.objects.all()
-    if user_information.filter(username=username, password=password).exists():
-        return HttpResponse('success')
-    else:
-        return HttpResponse('-1')
-
-def test(request):
-    return JsonResponse({"data": "Hello World!"})
+class LogoutView(LoginRequiredMixin, View):
+    def get(self,request, *args, **kwargs):
+        logout(request)
+        return JsonResponse({"status": "Success!", "status_code": 200})
