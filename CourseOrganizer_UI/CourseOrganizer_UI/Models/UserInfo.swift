@@ -11,4 +11,5 @@ struct UserInfo: Codable {
     var firstName = ""
     var email = ""
     var password = ""
+    
 }
