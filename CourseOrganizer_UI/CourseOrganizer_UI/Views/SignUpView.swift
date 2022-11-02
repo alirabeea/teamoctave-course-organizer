@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @StateObject var userVM = UserViewModel()
+    @StateObject private var userVM = UserViewModel()
     var body: some View {
         VStack{
             Text("Sign Up")
@@ -29,9 +29,29 @@ struct SignUpView: View {
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
+            Button("Create account"){
+                
+            }.foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .onTapGesture {
+                    createAccount()
+                }.disabled(userVM.createUserDisabled)
             
             Spacer()
         }
+    }
+    struct Message: Decodable {
+        let data: String;
+    }
+    
+    
+    //connect to backend, add new user with info
+    //entered user info is stored in userVM.userInfo
+    //as .firstName, .email, .password
+    func createAccount() {
+        
     }
 }
 
