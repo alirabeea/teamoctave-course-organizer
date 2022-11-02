@@ -26,12 +26,14 @@ class RegisterView(View):
 
     def post(self, request, *args, **kwargs):
         django_user = UserCreationForm(request.POST)
-        user = UserForm(request.POST)
-        if django_user.is_valid() and user.is_valid():
-            django_user.save()
-            user.save()
-            return JsonResponse({"status": "Success!", "status_code": 201})
-        return JsonResponse({"status": "Error!", "status_code": 401} + user.errors + django_user.errors)
+        if django_user.is_valid():
+            user = UserForm(request.POST + {"django_user_id": django_user.id})
+            if user.is_valid():
+                django_user.save()
+                user.save()
+                return JsonResponse({"status": "Success!", "status_code": 201})
+            return JsonResponse({"status": "Error!", "status_code": 401} + user.errors)
+        return JsonResponse({"status": "Error!", "status_code": 401} + django_user.errors)
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
