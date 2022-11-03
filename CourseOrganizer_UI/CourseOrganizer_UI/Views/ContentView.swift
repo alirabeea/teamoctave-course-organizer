@@ -15,34 +15,39 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("Welcome!")
+            }
+            .padding()
                 
                 HStack {
                     NavigationLink (destination: RequirementsView()){
                         Image("Requirements")
                             .renderingMode(.original)
                             .buttonStyle(DirectingButton())
+                        Text("Requirements")
                     }.frame(alignment: .bottom)
     
                     NavigationLink(destination: FindCoursesView()){
-                            Image("LookCourses")
+                        Image("LookCourses")
                             .renderingMode(.original)
                             .buttonStyle(DirectingButton())
+                        Text("FindCourses")
                         }.frame(alignment: .bottom)
                     
                     NavigationLink(destination: InterestedCoursesView()){
                         Image("StarCourses")
                             .renderingMode(.original)
                             .buttonStyle(DirectingButton())
+                        Text("InterestedCourses")
                     }.frame(alignment: .bottom)
                     
                     NavigationLink(destination: UserView()){
                         Image("User")
                             .renderingMode(.original)
                             .buttonStyle(UserButton())
+                        Text("User")
                     }.frame(alignment: .bottom)
                 }
-            }
-            .padding()
+            
         }
     }
 }

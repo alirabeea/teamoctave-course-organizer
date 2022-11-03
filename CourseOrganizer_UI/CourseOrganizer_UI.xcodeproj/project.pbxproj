@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A08F9702911AF43006DB974 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A08F96F2911AF43006DB974 /* Server.swift */; };
+		2A08F97229146009006DB974 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A08F97129146009006DB974 /* Package.swift */; };
 		2ADE30E029046B92005CA601 /* CourseOrganizer_UIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE30DF29046B92005CA601 /* CourseOrganizer_UIApp.swift */; };
 		2ADE30E229046B92005CA601 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE30E129046B92005CA601 /* ContentView.swift */; };
 		2ADE30E429046B93005CA601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADE30E329046B93005CA601 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A08F96F2911AF43006DB974 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		2A08F97129146009006DB974 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2ADE30DC29046B92005CA601 /* CourseOrganizer_UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseOrganizer_UI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADE30DF29046B92005CA601 /* CourseOrganizer_UIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOrganizer_UIApp.swift; sourceTree = "<group>"; };
 		2ADE30E129046B92005CA601 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				B88F2DD52905EE5400AB9399 /* APIService.swift */,
+				2A08F96F2911AF43006DB974 /* Server.swift */,
+				2A08F97129146009006DB974 /* Package.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 				B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */,
 				B8E6AF0D29132D2000A7C196 /* AddRequirementsView.swift in Sources */,
 				B88F2DD32905EE1500AB9399 /* Credentials.swift in Sources */,
+				2A08F9702911AF43006DB974 /* Server.swift in Sources */,
 				B88F2DDE290748FE00AB9399 /* RequirementsView.swift in Sources */,
 				2ADE30E229046B92005CA601 /* ContentView.swift in Sources */,
 				B8E6AF0F2913300900A7C196 /* Requirement.swift in Sources */,
@@ -231,6 +238,7 @@
 				B88F2DEC29076D3300AB9399 /* UserViewModel.swift in Sources */,
 				E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */,
 				B88F2DE429074BE600AB9399 /* UserView.swift in Sources */,
+				2A08F97229146009006DB974 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
