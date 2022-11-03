@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.http import JsonResponse
 from .forms import UserForm
+from .models import User, User_Courses
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -34,6 +35,13 @@ class RegisterView(View):
                 return JsonResponse({"status": "Success!", "status_code": 201})
             return JsonResponse({"status": "Error!", "status_code": 401} + user.errors)
         return JsonResponse({"status": "Error!", "status_code": 401} + django_user.errors)
+
+class UserCourseView(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        user = User.objects.get(django_user=request.user.id)
+        user_courses = User_Courses.objects.filter(user=user).values()
+        return JsonResponse({"courses": list(user_courses)})
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
