@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct server {
+class server {
     
     // get Data from server and decode file into JsonExchange
     func getData() async -> Any {
