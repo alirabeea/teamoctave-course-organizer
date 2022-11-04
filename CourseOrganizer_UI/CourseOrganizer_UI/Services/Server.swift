@@ -10,8 +10,8 @@ import Foundation
 class server {
     
     // get Data from server and decode file into JsonExchange
-    func getData() async -> Any {
-        guard let server_url = URL(string: "") else {
+    func getData(qurey: String) async -> Any {
+        guard let server_url = URL(string: "" + query) else {
             print("Invaild URL")
             return -1
         }
