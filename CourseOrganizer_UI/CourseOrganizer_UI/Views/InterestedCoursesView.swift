@@ -13,6 +13,8 @@ struct InterestedCoursesView: View {
             Text("Interested Courses")
                 .font(.largeTitle)
             Spacer()
+            
+            
         }
     }
 }

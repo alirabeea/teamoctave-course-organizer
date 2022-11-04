@@ -13,6 +13,7 @@ struct FindCoursesView: View {
             Text("Find Courses")
                 .font(.largeTitle)
             Spacer()
+        
         }
     }
 }

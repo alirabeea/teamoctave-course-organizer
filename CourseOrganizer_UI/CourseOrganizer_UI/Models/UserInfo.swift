@@ -9,6 +9,8 @@ import Foundation
 
 struct UserInfo: Codable {
     var firstName = ""
+    var netid = ""
+    var username = ""
     var email = ""
     var password = ""
     
