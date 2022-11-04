@@ -15,34 +15,51 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("Welcome!")
+            }
+            .padding()
                 
                 HStack {
                     NavigationLink (destination: RequirementsView()){
-                        Image("Requirements")
-                            .renderingMode(.original)
-                            .buttonStyle(DirectingButton())
+                        VStack (spacing: 5) {
+                            Image("Requirements")
+                                .renderingMode(.original)
+                                .buttonStyle(DirectingButton())
+                            Text("Requirements")
+                                .font(Font.footnote)
+                        }
                     }.frame(alignment: .bottom)
     
                     NavigationLink(destination: FindCoursesView()){
+                        VStack (spacing: 5) {
                             Image("LookCourses")
-                            .renderingMode(.original)
-                            .buttonStyle(DirectingButton())
+                                .renderingMode(.original)
+                                .buttonStyle(DirectingButton())
+                            Text("Find Courses")
+                                .font(Font.footnote)
+                        }
                         }.frame(alignment: .bottom)
                     
                     NavigationLink(destination: InterestedCoursesView()){
-                        Image("StarCourses")
-                            .renderingMode(.original)
-                            .buttonStyle(DirectingButton())
+                        VStack (spacing: 5) {
+                            Image("StarCourses")
+                                .renderingMode(.original)
+                                .buttonStyle(DirectingButton())
+                            Text("Interested Courses")
+                                .font(Font.footnote)
+                        }
                     }.frame(alignment: .bottom)
                     
                     NavigationLink(destination: UserView()){
-                        Image("User")
-                            .renderingMode(.original)
-                            .buttonStyle(UserButton())
+                        VStack (spacing: 5) {
+                            Image("User")
+                                .renderingMode(.original)
+                                .buttonStyle(UserButton())
+                            Text("User")
+                                .font(Font.footnote)
+                        }
                     }.frame(alignment: .bottom)
                 }
-            }
-            .padding()
+            
         }
     }
 }
