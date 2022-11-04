@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
+    
     @StateObject private var userVM = UserViewModel()
     var body: some View {
         VStack{
@@ -41,7 +42,8 @@ struct SignUpView: View {
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
             Button("Create account"){
-                createAccount()
+                createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password)
+                
             }.foregroundColor(.white)
                 .frame(width: 300, height: 50)
                 .background(Color.blue)
@@ -62,8 +64,7 @@ struct Message: Decodable {
     //connect to backend, add new user with info
     //entered user info is stored in userVM.userInfo
     //as .firstName, .email, .password
-    func createAccount() {
-        @EnvironmentObject var userVM: UserViewModel
+func createAccount(firstName: String, netid: String, email: String, username: String, password: String) {
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
             print("api is down")
             return
@@ -72,11 +73,11 @@ struct Message: Decodable {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let json = [
-            "firstname": userVM.userInfo.firstName,
-            "netid": userVM.userInfo.netid,
-            "username": userVM.userInfo.username,
-            "password1": userVM.userInfo.password,
-            "password2": userVM.userInfo.password]
+            "firstname": firstName,
+            "netid": netid,
+            "username": username,
+            "password1": password,
+            "password2": password]
 
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -92,6 +93,11 @@ struct Message: Decodable {
                         print(response.data);
                     }
                     return
+                }
+                if let response = response as? HTTPURLResponse {
+                    if(response.statusCode == 201){
+                        ContentView()
+                    }
                 }
             }
             
