@@ -15,9 +15,6 @@ struct ContentView: View {
                     .imageScale(.large)
                     .foregroundColor(.accentColor)
                 Text("Welcome!")
-            }
-            .padding()
-                
                 HStack {
                     NavigationLink (destination: RequirementsView()){
                         VStack (spacing: 5) {
@@ -37,7 +34,7 @@ struct ContentView: View {
                             Text("Find Courses")
                                 .font(Font.footnote)
                         }
-                        }.frame(alignment: .bottom)
+                    }.frame(alignment: .bottom)
                     
                     NavigationLink(destination: InterestedCoursesView()){
                         VStack (spacing: 5) {
@@ -60,6 +57,8 @@ struct ContentView: View {
                     }.frame(alignment: .bottom)
                 }
             
+            }
+            .padding()
         }
     }
 }
