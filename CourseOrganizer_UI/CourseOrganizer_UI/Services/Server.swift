@@ -8,18 +8,31 @@
 import Foundation
 
 class server {
+    var url = "http://127.0.0.1:8000"
+    
+    func doGetData(query: String){
+        Task {
+            await getData(query: query)
+        }
+    }
     
     // get Data from server and decode file into JsonExchange
     func getData(query: String) async -> Any {
-        guard let server_url = URL(string: "" + query) else {
+        guard let server_url = URL(string: url + query) else {
             print("Invaild URL")
             return -1
         }
         
+        var request = URLRequest(url: server_url)
+        request.httpMethod = "GET"
+        print(server_url)
+        
         do {
             let (data, _) = try await URLSession.shared.data(from: server_url)
+            
             // Need json and their vairable from BackEnd
-            let decodedData = try JSONDecoder().decode(Package.self, from: data)
+            let decodedData = try JSONDecoder().decode(Register.self, from: data)
+            print(decodedData)
             return decodedData
             
         } catch {

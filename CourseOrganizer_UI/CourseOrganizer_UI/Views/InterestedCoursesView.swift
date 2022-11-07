@@ -9,11 +9,17 @@ import SwiftUI
 
 struct InterestedCoursesView: View {
     @State private var newCourse = ""
+    @State var user = UserInfo()
     var body: some View {
         VStack{
             Text("Interested Courses")
                 .font(.largeTitle)
+                .onAppear(){
+                    user.getInterestedCourses()
+                }
             Spacer()
+
+                        
             
             Text("Add a course")
             TextField("Enter course name", text: $newCourse)
@@ -22,22 +28,18 @@ struct InterestedCoursesView: View {
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
                 .onSubmit{
-                    addInterestedCourse(course: newCourse)
+                    user.addInterestedCourse(course: newCourse)
                 }
             
             Spacer()
             
             
         }
+
     }
-}
-func addInterestedCourse(course: String){
-    
+
 }
 
-func getInterestedCourses(){
-    
-}
 
 struct InterestedCoursesView_Previews: PreviewProvider {
     static var previews: some View {

@@ -11,3 +11,18 @@ import Foundation
 struct Package: Decodable, Encodable {
     
 }
+
+//this is the structure for sending or recieving /register json
+struct Register: Decodable, Encodable {
+    let fields: Array<String>?
+    let csrf_token: String?
+    
+}
+
+
+//this is the json format for a register post or get
+/*
+{"fields": ["name", "netid", "username", "password1", "password2"], "csrf_token": "N1dVGCzTtWk8O0cYTbmEsquQhfDk8NsHlVjTGZRzkr51GA0Mb3REfFQlcotR63qI"}
+
+*/
+

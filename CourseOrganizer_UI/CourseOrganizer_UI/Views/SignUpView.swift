@@ -16,7 +16,7 @@ struct SignUpView: View {
            
             Text("Sign Up")
                 .font(.largeTitle)
-            
+                
             TextField("first name", text: $userVM.userInfo.firstName)
                 .padding()
                 .frame(width: 300, height: 50)
@@ -43,87 +43,99 @@ struct SignUpView: View {
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
-            Button("Create account"){
-                getCSRF()
-//                createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password)
-//
+            Button("Create account"){ //this is where create account is called
+                //first, get the csrf token to be plugged into the createAccount function
+                let csrf = getCSRF()
+                createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf)
+
             }.foregroundColor(.white)
                 .frame(width: 300, height: 50)
                 .background(Color.blue)
                 .cornerRadius(10)
+                
                 //.disabled(userVM.createUserDisabled)
-            Text(message)
+ 
         }.autocapitalization(.none)
         
         Spacer()
     }
-    struct Message: Decodable {
-            let data: String;
-        }
-        
-        
-    func getCSRF(){
+
+    var session = URLSession.shared
+
+    
+    
+    // this function is needed to generate a CSRF token that should be sent with the POST
+    //returns token as a string
+    func getCSRF() -> String{
+        var csrf_token = ""
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
-            print("api is down")
-            return
+                print("api is down")
+                return "none"
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
-                    DispatchQueue.main.async {
-                        message = response.data
-                        print("hi")
-                        print(response.data)
-                    }
-                    return
-                }
-            }
+        URLSession.shared.dataTask(with: URL(string: "http://127.0.0.1:8000/users/register/")!, completionHandler: { data, response, error in
             
-        }.resume()
-        return
-    }
-    func createAccount(firstName: String, netid: String, email: String, username: String, password: String) {
-            guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
-                print("api is down")
+            guard let data = data, error == nil else{
+                print("something went wrong")
                 return
             }
             
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            let json = [
-                "firstname": firstName,
-                "netid": netid,
-                "username": username,
-                "password1": password,
-                "password2": password]
-
-            
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
-                        DispatchQueue.main.async {
-                            
-                                do {                                    request.httpBody = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) // pass dictionary to data object and set it as request body
-                                    } catch let error {
-                                        print(error.localizedDescription)
-                                    }
-                
-                            print(response.data);
-                        }
-                        return
-                    }
-                    if let response = response as? HTTPURLResponse {
-                        if(response.statusCode == 201){
-                            ContentView()
-                        }
-                    }
-                }
-                
-            }.resume()
+            var result: Register?
+            do{
+                result = try JSONDecoder().decode(Register.self, from: data)
+            }catch{
+                print(String(describing: error))
+            }
+            guard let json = result else{
+                return
+            }
+            csrf_token =  String(json.csrf_token!)
+            print (csrf_token)
+        }).resume()
+        
+        return csrf_token
+    }
+    struct Message: Codable{
+        let data: String
+    }
+        
+    
+    //sends all of user data to the server to create a new user
+    //currently does not work - server is unable to read the CSRF token
+    //this function is called when the create account button is pressed - set up the server through terminal to see whether or not the request goes through
+    func createAccount(firstName: String, netid: String, email: String, username: String, password: String, csrf: String) {
+        guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
+            print("api is down")
+            return
         }
+        let registerDataModel = Register(fields: [firstName, netid, username, password, password], csrf_token: csrf)
+        
+        guard let jsonData = try? JSONEncoder().encode(registerDataModel) else{
+            print("could not convert model to JSON data")
+            return
+        }
+        
+        //create url request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //request.httpBody = jsonData
+        
+        URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
+            
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                print(String(describing: error))
+                return
+            }
+        }).resume()
+        
+
+        
+    }
    
 }
     
