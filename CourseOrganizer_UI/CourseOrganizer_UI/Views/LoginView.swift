@@ -51,9 +51,7 @@ struct LoginView: View {
                     Text("Sign Up")
                         .foregroundColor(.blue)
                 }
-                
-                
-                
+             
                 Spacer()
                 Text("Message from server:")
                 Text(message)
@@ -87,9 +85,7 @@ struct LoginView: View {
                     return
                 }
             }
-            
         }.resume()
-        
     }
 }
 

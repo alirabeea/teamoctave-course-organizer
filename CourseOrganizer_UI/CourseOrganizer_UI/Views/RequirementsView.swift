@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct RequirementsView: View {
+    @ObservedObject var requirementViewModel = RequirementsViewModel()
+
     var body: some View {
         NavigationView{
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-                List{
-                    Text("List requirements here");
-                    
+                ForEach(requirementViewModel.requirements, id: \.self) { item in
+                    Text(item);
                 }
-                NavigationLink(destination: AddRequirementsView()){
+                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
                     Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10)
             }

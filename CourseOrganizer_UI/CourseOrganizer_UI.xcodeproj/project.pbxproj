@@ -30,6 +30,7 @@
 		E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107886C2906588B00DA5403 /* ViewRouter.swift */; };
 		E107887129065C0E00DA5403 /* InputCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107887029065C0E00DA5403 /* InputCourse.swift */; };
 		E10788732906629400DA5403 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10788722906629400DA5403 /* MainView.swift */; };
+		E1126786291436FE0009D447 /* RequirementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1126785291436FE0009D447 /* RequirementsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		E107886C2906588B00DA5403 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		E107887029065C0E00DA5403 /* InputCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCourse.swift; sourceTree = "<group>"; };
 		E10788722906629400DA5403 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E1126785291436FE0009D447 /* RequirementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				B88F2DE729075EFE00AB9399 /* UserInfo.swift */,
 				B88F2DEB29076D3300AB9399 /* UserViewModel.swift */,
 				B8E6AF0E2913300900A7C196 /* Requirement.swift */,
+				E1126785291436FE0009D447 /* RequirementsViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				E107887129065C0E00DA5403 /* InputCourse.swift in Sources */,
 				B88F2DE829075EFE00AB9399 /* UserInfo.swift in Sources */,
 				B88F2DDA2905F08D00AB9399 /* LoginView.swift in Sources */,
+				E1126786291436FE0009D447 /* RequirementsViewModel.swift in Sources */,
 				E10788732906629400DA5403 /* MainView.swift in Sources */,
 				B88F2DE02907491100AB9399 /* FindCoursesView.swift in Sources */,
 				B8E6AF0D29132D2000A7C196 /* AddRequirementsView.swift in Sources */,

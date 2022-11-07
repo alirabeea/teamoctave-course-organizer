@@ -15,8 +15,7 @@ struct UserView: View {
                 .font(.largeTitle)
             TextField("first name", text: $userVM.userInfo.firstName)
             TextField("email", text: $userVM.userInfo.email)
-            
-            
+
             Spacer()
         }
     }
