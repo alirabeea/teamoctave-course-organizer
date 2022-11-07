@@ -10,29 +10,42 @@ import SwiftUI
 struct InterestedCoursesView: View {
     @State private var newCourse = ""
     @State var user = UserInfo()
+    private var courseOne = "CS 311"
+    private var courseTwo = "CS 325"
     var body: some View {
-        VStack{
-            Text("Interested Courses")
-                .font(.largeTitle)
-                .onAppear(){
-                    user.getInterestedCourses()
+        ZStack{
+            
+            VStack{
+                
+                    
+                Text("Interested Courses")
+                    .font(.largeTitle)
+                    .onAppear(){
+                        user.getInterestedCourses()
+                    }.padding()
+                VStack(){
+                    Text(courseOne)
+                    Text(courseTwo)
+                }.font(.title)
+                
+                Spacer()
+                HStack(alignment: .bottom){
+                    VStack{
+                        Text("Add a course").font(.headline)
+                        TextField("Enter course name", text: $newCourse)
+                            .padding()
+                            .frame(width: 300, height: 50)
+                            .background(Color.black.opacity(0.05))
+                            .cornerRadius(10)
+                            .onSubmit{
+                                user.addInterestedCourse(course: newCourse)
+                            }
+                    }
                 }
-            Spacer()
-
-                        
-            
-            Text("Add a course")
-            TextField("Enter course name", text: $newCourse)
-                .padding()
-                .frame(width: 300, height: 50)
-                .background(Color.black.opacity(0.05))
-                .cornerRadius(10)
-                .onSubmit{
-                    user.addInterestedCourse(course: newCourse)
-                }
-            
-            Spacer()
-            
+                
+                
+                
+            }
             
         }
 

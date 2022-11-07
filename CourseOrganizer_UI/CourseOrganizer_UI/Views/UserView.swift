@@ -13,8 +13,8 @@ struct UserView: View {
         VStack{
             Text("User Info")
                 .font(.largeTitle)
-            TextField("first name", text: $userVM.userInfo.firstName)
-            TextField("email", text: $userVM.userInfo.email)
+            TextField("first name", text: $userVM.userInfo.firstName).padding()
+            TextField("email", text: $userVM.userInfo.email).padding()
 
             Spacer()
         }
