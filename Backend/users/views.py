@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.middleware.csrf import get_token
 from django.http import JsonResponse
 from .forms import UserForm
-from .models import User, User_Courses
+from .models import User, User_Course
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -42,7 +42,7 @@ class UserCourseView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         user = User.objects.get(django_user=request.user.id)
-        user_courses = User_Courses.objects.filter(user=user).values()
+        user_courses = User_Course.objects.filter(user=user).values()
         return JsonResponse({"courses": list(user_courses), "csrf_token": get_token(request)})
 
 class LogoutView(LoginRequiredMixin, View):

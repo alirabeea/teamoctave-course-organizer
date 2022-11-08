@@ -15,12 +15,12 @@ struct RequirementsView: View {
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-                ForEach(requirementViewModel.requirements, id: \.self) { item in
+                List(requirementViewModel.requirements, id: \.self) { item in
                     Text(item);
                 }
                 NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
                     Text("Add requirement")
-                }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10)
+                }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarBackButtonHidden(true)
             }
                 
         }

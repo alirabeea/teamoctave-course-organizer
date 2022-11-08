@@ -8,6 +8,6 @@ class User(models.Model):
     netid = models.CharField(max_length=64)
     django_user = models.OneToOneField(Django_User, on_delete= models.CASCADE, related_name="user")
 
-class User_Courses(models.Model):
+class User_Course(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="courses")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="users")
