@@ -44,11 +44,14 @@ struct SignUpView: View {
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
             Button("Create account"){ //this is where create account is called
-                //first, get the csrf token to be plugged into the createAccount function
-                
+            
+                //call registerCSRF which returns a closure in which
+                //we call the POST function (createAccount)
+                //with all user info to be sent to the server
                 server.registerCSRF(){(json) in
                     let csrf = json.csrf_token!
                     server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf)
+                    
                     print("csrf: " + csrf)
                 }
             
