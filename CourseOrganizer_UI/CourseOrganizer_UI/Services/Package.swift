@@ -18,7 +18,9 @@ struct Register: Decodable, Encodable {
     let csrf_token: String?
     
 }
-
+struct Courses: Decodable, Encodable {
+    
+}
 
 //this is the json format for a register post or get
 /*

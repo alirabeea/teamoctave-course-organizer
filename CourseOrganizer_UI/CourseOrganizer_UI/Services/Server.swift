@@ -7,14 +7,107 @@
 
 import Foundation
 
-class server {
+class Server {
     var url = "http://127.0.0.1:8000"
+    var registerEndpoint = "/register"
+    var coursesEndpoint = "/courses/"
     
-    func doGetData(query: String){
-        Task {
-            await getData(query: query)
+    // this function is needed to generate a CSRF token that should be sent with the POST
+    //call this function and in the closer, call the function that deals with POST requests
+    func registerCSRF(endpoint: String, completion: @escaping ((Register) -> Void)){
+
+        guard let url = URL(string: "http://127.0.0.1:8000/" + endpoint) else {
+                print("api is down")
+                return
         }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                return
+            }
+            
+            var result: Register?
+            do{
+                result = try JSONDecoder().decode(Register.self, from: data)
+                completion(result!)
+            }catch{
+                print(String(describing: error))
+            }
+            
+        }.resume()
+        
     }
+    func coursesCSRF(endpoint: String, completion: @escaping ((Courses) -> Void)){
+
+        guard let url = URL(string: "http://127.0.0.1:8000/" + endpoint) else {
+                print("api is down")
+                return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                return
+            }
+            
+            var result: Courses?
+            do{
+                result = try JSONDecoder().decode(Courses.self, from: data)
+                completion(result!)
+            }catch{
+                print(String(describing: error))
+            }
+            
+        }.resume()
+        
+    }
+    
+    //sends all of user data to the server to create a new user
+    //currently does not work - server is unable to read the CSRF token
+    //this function is called when the create account button is pressed - set up the server through terminal to see whether or not the request goes through
+    func createAccount(firstName: String, netid: String, email: String, username: String, password: String, csrf: String) {
+        guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
+            print("api is down")
+            return
+        }
+        let registerDataModel = Register(fields: [firstName, netid, username, password, password], csrf_token: csrf)
+        
+        guard let jsonData = try? JSONEncoder().encode(registerDataModel) else{
+            print("could not convert model to JSON data")
+            return
+        }
+        
+        //create url request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(csrf, forHTTPHeaderField: "X-CSRFToken")
+        
+        //request.httpBody = jsonData
+        
+        URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
+            
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                print(String(describing: error))
+                return
+            }
+        }).resume()
+        
+
+        
+    }
+    
+    
+    
+    
     
     // get Data from server and decode file into JsonExchange
     func getData(query: String) async -> Any {
