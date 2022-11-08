@@ -9,14 +9,14 @@ import Foundation
 
 class Server {
     var url = "http://127.0.0.1:8000"
-    var registerEndpoint = "/register"
-    var coursesEndpoint = "/courses/"
+    var registerEndpoint = "register/"
+    var coursesEndpoint = "courses/"
     
     // this function is needed to generate a CSRF token that should be sent with the POST
     //call this function and in the closer, call the function that deals with POST requests
-    func registerCSRF(endpoint: String, completion: @escaping ((Register) -> Void)){
+    func registerCSRF(completion: @escaping ((Register) -> Void)){
 
-        guard let url = URL(string: "http://127.0.0.1:8000/" + endpoint) else {
+        guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
                 print("api is down")
                 return
         }
