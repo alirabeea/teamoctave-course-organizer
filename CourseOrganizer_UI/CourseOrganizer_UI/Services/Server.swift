@@ -13,7 +13,7 @@ class Server {
     var coursesEndpoint = "courses/"
     
     // this function is needed to generate a CSRF token that should be sent with the POST
-    //call this function and in the closer, call the function that deals with POST requests
+    //call this function and in the closure, call the function that deals with POST requests
     func registerCSRF(completion: @escaping ((Register) -> Void)){
 
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
@@ -30,9 +30,13 @@ class Server {
                 return
             }
             
+            
             var result: Register?
+            
+            //turn the result into a codable Register struct so that we can read the json data
             do{
                 result = try JSONDecoder().decode(Register.self, from: data)
+                //return the Register struct result in the completion
                 completion(result!)
             }catch{
                 print(String(describing: error))
@@ -41,6 +45,8 @@ class Server {
         }.resume()
         
     }
+    
+    //same as above, but generates CSRF for a get/post courses request
     func coursesCSRF(endpoint: String, completion: @escaping ((Courses) -> Void)){
 
         guard let url = URL(string: "http://127.0.0.1:8000/" + endpoint) else {
@@ -70,13 +76,14 @@ class Server {
     }
     
     //sends all of user data to the server to create a new user
-    //currently does not work - server is unable to read the CSRF token
+    //currently does not work - server-side issue
     //this function is called when the create account button is pressed - set up the server through terminal to see whether or not the request goes through
     func createAccount(firstName: String, netid: String, email: String, username: String, password: String, csrf: String) {
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
             print("api is down")
             return
         }
+        //this is a model of the register data that server wants - we give the data we want to send and then it is encoded for sending to server
         let registerDataModel = Register(fields: [firstName, netid, username, password, password], csrf_token: csrf)
         
         guard let jsonData = try? JSONEncoder().encode(registerDataModel) else{
@@ -88,9 +95,10 @@ class Server {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //this includes the csrf token in the request header
         request.setValue(csrf, forHTTPHeaderField: "X-CSRFToken")
         
-        //request.httpBody = jsonData
         
         URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
             
