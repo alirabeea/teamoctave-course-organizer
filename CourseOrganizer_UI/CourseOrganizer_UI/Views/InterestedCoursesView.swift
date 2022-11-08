@@ -10,6 +10,7 @@ import SwiftUI
 struct InterestedCoursesView: View {
     @State private var newCourse = ""
     @State var user = UserInfo()
+    //hard coded until we can pull from server
     private var courseOne = "CS 311"
     private var courseTwo = "CS 325"
     var body: some View {
@@ -23,6 +24,8 @@ struct InterestedCoursesView: View {
                     .onAppear(){
                         user.getInterestedCourses()
                     }.padding()
+                Divider()
+                    .padding()
                 VStack(){
                     Text(courseOne)
                     Text(courseTwo)
