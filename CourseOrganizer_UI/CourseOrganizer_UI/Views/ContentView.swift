@@ -11,11 +11,18 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                Text("Welcome!")
-                HStack {
+                Text("Course Organizer")
+                    .font(.largeTitle)
+                Spacer()
+                VStack{
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundColor(.accentColor)
+                    Text("Welcome!")
+                        .font(.title)
+                }.padding(50)
+                Spacer()
+                HStack (alignment: .bottom){
                     NavigationLink (destination: RequirementsView()){
                         VStack (spacing: 5) {
                             Image("Requirements")
@@ -25,7 +32,7 @@ struct ContentView: View {
                                 .font(Font.footnote)
                         }
                     }.frame(alignment: .bottom)
-    
+                    
                     NavigationLink(destination: FindCoursesView()){
                         VStack (spacing: 5) {
                             Image("LookCourses")
@@ -35,7 +42,7 @@ struct ContentView: View {
                                 .font(Font.footnote)
                         }
                     }.frame(alignment: .bottom)
-                    
+                
                     NavigationLink(destination: InterestedCoursesView()){
                         VStack (spacing: 5) {
                             Image("StarCourses")
@@ -57,7 +64,7 @@ struct ContentView: View {
                     }.frame(alignment: .bottom)
                 }
             
-            }
+            }.padding(.bottom)
             .padding()
         }
     }
