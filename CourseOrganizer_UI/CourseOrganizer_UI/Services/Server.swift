@@ -100,9 +100,35 @@ class Server {
                 return
             }
         }).resume()
+    }
+    
+    func updateRequirement(requirements: Array<String>, csrf: String) {
+        guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
+            print("api is down")
+            return
+        }
+        let requirementDataModel = Requirements(fields: requirements, csrf_token: csrf)
         
-
+        guard let jsonData = try? JSONEncoder().encode(requirementDataModel) else{
+            print("could not convert model to JSON data")
+            return
+        }
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("requirement/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(csrf, forHTTPHeaderField: "X-CSRFToken")
+        
+        //request.httpBody = jsonData
+        
+        URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
+            
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                print(String(describing: error))
+                return
+            }
+        }).resume()
     }
     
     

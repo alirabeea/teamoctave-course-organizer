@@ -9,8 +9,11 @@ import SwiftUI
 
 struct AddRequirementsView: View {
     @ObservedObject var requirementViewModel: RequirementsViewModel
-    @State var requirementStr : String?;
+    @State var requirementStr : String?
+    let server = Server()
+
     var body: some View {
+        
         NavigationView{
             VStack {
                 NavigationView {
@@ -20,6 +23,11 @@ struct AddRequirementsView: View {
                 }
                 Button("Add") {
                     requirementViewModel.addRequirement(requirementStr!)
+                    server.registerCSRF(){(json) in
+                        let csrf = json.csrf_token!
+                        server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
+                        print("csrf: " + csrf)
+                    }
                 }
             }
         }

@@ -21,6 +21,11 @@ struct Register: Decodable, Encodable {
 struct Courses: Decodable, Encodable {
     
 }
+// struct for sending and receiving reuirement
+struct Requirements: Decodable, Encodable {
+    let fields: Array<String>
+    let csrf_token: String
+}
 
 //this is the json format for a register post or get
 /*

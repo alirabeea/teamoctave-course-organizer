@@ -15,7 +15,7 @@ class RequirementsViewModel: ObservableObject {
 //    }
     
     @Published var requirements : Array<String> = [];
-    @State var selection: Array<String> = ["Junior Year Writing (JYW) Requirement", "Intergrative Experience Requirement", "2 Introductory Computer Science Courses", "4 Core Computer Science Courses", "4 Mathmatics Courses", "8 Upper-Level Elective Computer Science Courses"]
+    @State var selection: Array<String> = ["Junior Year Writing (JYW) Requirement", "Intergrative Experience Requirement", "Introductory Computer Science Courses", "Core Computer Science Courses", "Mathmatics Courses", "Upper-Level Elective Computer Science Courses"]
 
     func addRequirement(_ requirement: String) {
         self.requirements.insert(requirement, at: 0);
