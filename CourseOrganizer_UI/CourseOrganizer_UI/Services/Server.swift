@@ -8,7 +8,7 @@
 import Foundation
 
 class Server {
-    var url = "http://127.0.0.1:8000"
+    var url = "http://127.0.0.1:8000/"
     var registerEndpoint = "register/"
     var coursesEndpoint = "courses/"
     
