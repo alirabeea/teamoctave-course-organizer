@@ -15,8 +15,10 @@ struct ContentView: View {
                     .font(.largeTitle)
                 Spacer()
                 VStack{
-                    Image(systemName: "globe")
-                        .imageScale(.large)
+                    Image("icon1")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50)
                         .foregroundColor(.accentColor)
                     Text("Welcome!")
                         .font(.title)

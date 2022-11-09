@@ -22,11 +22,13 @@ struct AddRequirementsView: View {
                     }.navigationTitle("Requirement Selection")
                 }
                 Button("Add") {
-                    requirementViewModel.addRequirement(requirementStr!)
-                    server.registerCSRF(){(json) in
-                        let csrf = json.csrf_token!
-                        server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
-                        print("csrf: " + csrf)
+                    if (requirementStr! != "") {
+                        requirementViewModel.addRequirement(requirementStr!)
+                        server.registerCSRF(){(json) in
+                            let csrf = json.csrf_token!
+                            server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
+                            print("csrf: " + csrf)
+                        }
                     }
                 }
             }
