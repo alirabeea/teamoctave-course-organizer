@@ -22,7 +22,7 @@ struct AddRequirementsView: View {
                     }.navigationTitle("Requirement Selection")
                 }
                 Button("Add") {
-                    if (requirementStr! != "") {
+                    if (requirementStr != nil) {
                         requirementViewModel.addRequirement(requirementStr!)
                         server.registerCSRF(){(json) in
                             let csrf = json.csrf_token!

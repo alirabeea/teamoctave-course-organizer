@@ -13,11 +13,28 @@ struct Package: Decodable, Encodable {
 }
 
 //this is the structure for sending or recieving /register json
-struct Register: Decodable, Encodable {
-    let fields: Array<String>?
+struct Register: Codable {
+//    let fields: Array<String>?
+//    let csrf_token: String?
+    let name: String?
+    let netid: String?
+    let username: String?
+    let password1: String?
+    let password2: String?
     let csrf_token: String?
     
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case netid = "netid"
+        case username = "username"
+        case csrf_token = "X-CSRFToken"
+        case password1 = "password1"
+        case password2 = "password2"
+    }
+        
 }
+   
+
 struct Courses: Decodable, Encodable {
     
 }
