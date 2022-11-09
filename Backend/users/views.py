@@ -24,7 +24,7 @@ class RegisterView(View):
     user_form = UserForm()
 
     def get(self, request, *args, **kwargs):
-        return JsonResponse({"fields": ("name", "netid", "username", "password1", "password2"),
+        return JsonResponse({"fields": ("name", "netid", "username", "password1", "password2", "email"),
                             "csrf_token": get_token(request) })
 
     def post(self, request, *args, **kwargs):
@@ -35,8 +35,8 @@ class RegisterView(View):
                 django_user.save()
                 user.save()
                 return JsonResponse({"status": "Success!", "status_code": 201})
-            return JsonResponse({"status": "Error!", "status_code": 401} + user.errors)
-        return JsonResponse({"status": "Error!", "status_code": 401} + django_user.errors)
+            return JsonResponse({"status": "Error!", "status_code": 401}.update(dict(user.errors)), safe=False)
+        return JsonResponse({"status": "Error!", "status_code": 401}.update(dict(django_user.errors)), safe=False)
 
 class UserCourseView(LoginRequiredMixin, View):
 
