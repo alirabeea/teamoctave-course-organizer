@@ -84,7 +84,7 @@ class Server {
             return
         }
         //this is a model of the register data that server wants - we give the data we want to send and then it is encoded for sending to server
-        let registerDataModel = Register(name: firstName, netid: netid, username: username, password1: password, password2: password, csrf_token: csrf)
+        let registerDataModel = Register(name: firstName, netid: netid, username: username, password1: password, password2: password, csrfmidlewaretoken: csrf)
         
         guard let jsonData = try? JSONEncoder().encode(registerDataModel) else{
             print("could not convert model to JSON data")

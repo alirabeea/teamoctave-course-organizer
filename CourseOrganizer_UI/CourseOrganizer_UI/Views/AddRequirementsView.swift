@@ -25,7 +25,7 @@ struct AddRequirementsView: View {
                     if (requirementStr != nil) {
                         requirementViewModel.addRequirement(requirementStr!)
                         server.registerCSRF(){(json) in
-                            let csrf = json.csrf_token!
+                            let csrf = json.csrfmidlewaretoken!
                             server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
                             print("csrf: " + csrf)
                         }

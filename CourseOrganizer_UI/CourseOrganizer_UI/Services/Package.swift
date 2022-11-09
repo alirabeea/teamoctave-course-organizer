@@ -21,17 +21,7 @@ struct Register: Codable {
     let username: String?
     let password1: String?
     let password2: String?
-    let csrf_token: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case netid = "netid"
-        case username = "username"
-        case csrf_token = "X-CSRFToken"
-        case password1 = "password1"
-        case password2 = "password2"
-    }
-        
+    let csrfmidlewaretoken: String?
 }
    
 
