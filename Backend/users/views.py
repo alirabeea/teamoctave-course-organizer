@@ -28,9 +28,13 @@ class RegisterView(View):
                             "csrf_token": get_token(request) })
 
     def post(self, request, *args, **kwargs):
+        print("beginning")
         django_user = UserCreationForm(request.POST)
         if django_user.is_valid():
-            user = UserForm(request.POST + {"django_user_id": django_user.id})
+            django_user = django_user.save(commit=False)
+            data = request.POST.copy()
+            data.update({'django_user': django_user.id})
+            user = UserForm(data)
             if user.is_valid():
                 django_user.save()
                 user.save()

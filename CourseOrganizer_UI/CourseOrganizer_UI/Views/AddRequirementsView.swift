@@ -11,7 +11,7 @@ struct AddRequirementsView: View {
     @ObservedObject var requirementViewModel: RequirementsViewModel
     @State var requirementStr : String?
     let server = Server()
-
+    
     var body: some View {
         
         VStack {
@@ -28,6 +28,7 @@ struct AddRequirementsView: View {
 //                        }
                 }
             }
+            
         }
     }
 }

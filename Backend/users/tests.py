@@ -51,12 +51,13 @@ class login_view_test(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(parseJson['status_code'], 200)
         self.assertEqual(parseJson['status'], "Success!")
-    """
+    
     def test_register_view_post_failure(self):
         data = {
             'username': 'test1',
             'email':'123456@gmail.com',
             'password1':'testpassword',
+            'password2': 'testpassword'
         }
         client = Client()
         response = client.post('/users/register/', data)
@@ -67,4 +68,4 @@ class login_view_test(SimpleTestCase):
             print("no") 
         print(django_user.data)
         print("#5 test register_view post, expected: 201")
-    """
+    
