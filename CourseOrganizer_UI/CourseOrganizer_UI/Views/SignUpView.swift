@@ -49,7 +49,8 @@ struct SignUpView: View {
                 //we call the POST function (createAccount)
                 //with all user info to be sent to the server
                 server.registerCSRF(){(json) in
-                    let csrf = json.csrf_token!
+                    print(json)
+                    let csrf = json.csrf_token
                     server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf)
                     
                     print("csrf: " + csrf)

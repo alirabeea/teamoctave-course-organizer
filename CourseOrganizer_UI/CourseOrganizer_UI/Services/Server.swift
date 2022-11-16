@@ -14,7 +14,7 @@ class Server {
     
     // this function is needed to generate a CSRF token that should be sent with the POST
     //call this function and in the closure, call the function that deals with POST requests
-    func registerCSRF(completion: @escaping ((Register) -> Void)){
+    func registerCSRF(completion: @escaping ((Requirements) -> Void)){
 
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
                 print("api is down")
@@ -31,11 +31,11 @@ class Server {
             }
             
             
-            var result: Register?
+            var result: Requirements?
             
             //turn the result into a codable Register struct so that we can read the json data
             do{
-                result = try JSONDecoder().decode(Register.self, from: data)
+                result = try JSONDecoder().decode(Requirements.self, from: data)
                 //return the Register struct result in the completion
                 completion(result!)
             }catch{
@@ -84,7 +84,7 @@ class Server {
             return
         }
         //this is a model of the register data that server wants - we give the data we want to send and then it is encoded for sending to server
-        let registerDataModel = Register(name: firstName, netid: netid, username: username, password1: password, password2: password, csrfmidlewaretoken: csrf)
+        let registerDataModel = Register(name: firstName, netid: netid, username: username, password1: password, password2: password, csrfmiddlewaretoken: csrf)
         
         guard let jsonData = try? JSONEncoder().encode(registerDataModel) else{
             print("could not convert model to JSON data")

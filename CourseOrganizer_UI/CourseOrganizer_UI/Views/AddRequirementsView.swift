@@ -11,7 +11,7 @@ struct AddRequirementsView: View {
     @ObservedObject var requirementViewModel: RequirementsViewModel
     @State var requirementStr : String?
     let server = Server()
-
+    
     var body: some View {
         
         NavigationView{
@@ -25,13 +25,14 @@ struct AddRequirementsView: View {
                     if (requirementStr != nil) {
                         requirementViewModel.addRequirement(requirementStr!)
                         server.registerCSRF(){(json) in
-                            let csrf = json.csrfmidlewaretoken!
+                            let csrf = json.csrf_token
                             server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
                             print("csrf: " + csrf)
                         }
                     }
                 }
             }
+            
         }
     }
 }
