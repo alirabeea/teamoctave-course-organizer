@@ -21,7 +21,7 @@ struct Register: Codable {
     let username: String?
     let password1: String?
     let password2: String?
-    let csrfmidlewaretoken: String?
+    let csrfmiddlewaretoken: String?
 }
    
 
