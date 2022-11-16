@@ -14,22 +14,18 @@ struct AddRequirementsView: View {
 
     var body: some View {
         
-        NavigationView{
-            VStack {
-                NavigationView {
-                    List(requirementViewModel.selection, id: \.self, selection: $requirementStr) {choice in
-                        Text(choice)
-                    }.navigationTitle("Requirement Selection")
-                }
-                Button("Add") {
-                    if (requirementStr != nil) {
-                        requirementViewModel.addRequirement(requirementStr!)
-                        server.registerCSRF(){(json) in
-                            let csrf = json.csrfmidlewaretoken!
-                            server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
-                            print("csrf: " + csrf)
-                        }
-                    }
+        VStack {
+            List(requirementViewModel.selection, id: \.self, selection: $requirementStr) {choice in
+                Text(choice)
+            }.navigationTitle("Requirement Selection")
+            Button("Add") {
+                if (requirementStr != nil) {
+                    requirementViewModel.addRequirement(requirementStr!)
+//                        server.registerCSRF(){(json) in
+//                            let csrf = json.csrfmiddlewaretoken!
+//                            server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
+//                            print("csrf: " + csrf)
+//                        }
                 }
             }
         }
