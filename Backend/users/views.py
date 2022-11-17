@@ -4,8 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.middleware.csrf import get_token
 from django.http import JsonResponse
-from .forms import UserForm
 from .models import User, User_Course
+
+import json
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -20,27 +21,19 @@ class LoginView(View):
             return JsonResponse({"status": "Error!", "status_code": 401})
 
 class RegisterView(View):
-    django_user_form = UserCreationForm()
-    user_form = UserForm()
-
     def get(self, request, *args, **kwargs):
         return JsonResponse({"fields": ("name", "netid", "username", "password1", "password2", "email"),
                             "csrf_token": get_token(request) })
 
     def post(self, request, *args, **kwargs):
-        print("beginning")
-        django_user = UserCreationForm(request.POST)
+        data = json.loads(request.body)
+        django_user = UserCreationForm(data)
         if django_user.is_valid():
-            django_user = django_user.save(commit=False)
-            data = request.POST.copy()
-            data.update({'django_user': django_user.id})
-            user = UserForm(data)
-            if user.is_valid():
-                django_user.save()
-                user.save()
-                return JsonResponse({"status": "Success!", "status_code": 201})
-            return JsonResponse({"status": "Error!", "status_code": 401}.update(dict(user.errors)), safe=False)
-        return JsonResponse({"status": "Error!", "status_code": 401}.update(dict(django_user.errors)), safe=False)
+            django_user = django_user.save()
+            user = User(name=data['name'], netid=data['netid'], django_user=django_user)
+            user.save()
+            return JsonResponse({"status": "Success!", "status_code": 201})
+        return JsonResponse(django_user.errors.as_json(), safe=False)
 
 class UserCourseView(LoginRequiredMixin, View):
 
