@@ -78,7 +78,7 @@ class Server {
     //sends all of user data to the server to create a new user
     //currently does not work - server-side issue
     //this function is called when the create account button is pressed - set up the server through terminal to see whether or not the request goes through
-    func createAccount(firstName: String, netid: String, email: String, username: String, password: String, csrf: String) {
+    func createAccount(firstName: String, netid: String, email: String, username: String, password: String, csrf: String, completion: @escaping ((Bool) -> Void)) {
         guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
             print("api is down")
             return
@@ -106,6 +106,15 @@ class Server {
                 print("something went wrong")
                 print(String(describing: error))
                 return
+            }
+            if let response = response as? HTTPURLResponse {
+                if(response.statusCode == 200){
+                    print("successfully created account!")
+                    completion(true)
+                }else{
+                    print("error creating account. status code: \(response.statusCode)")
+                    completion(false)
+                }
             }
         }).resume()
     }
