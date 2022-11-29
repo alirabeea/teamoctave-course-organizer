@@ -28,7 +28,9 @@ class RegisterView(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body)
         django_user = UserCreationForm(data)
+        print("right before is valid")
         if django_user.is_valid():
+            print("inside is valid")
             django_user = django_user.save()
             user = User(name=data['name'], netid=data['netid'], django_user=django_user)
             user.save()

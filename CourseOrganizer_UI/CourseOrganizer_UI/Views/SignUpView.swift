@@ -51,7 +51,13 @@ struct SignUpView: View {
                 server.registerCSRF(){(json) in
                     print(json)
                     let csrf = json.csrf_token
-                    server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf)
+                    server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf){(isCreated) in
+                        if(isCreated){
+                            LoginView()
+                        }else{
+                            print("unable to create account")
+                        }
+                    }
                     
                     print("csrf: " + csrf)
                 }
