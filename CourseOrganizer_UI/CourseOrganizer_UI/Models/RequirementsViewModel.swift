@@ -16,6 +16,7 @@ class RequirementsViewModel: ObservableObject {
     
     @Published var requirements : Array<String> = [];
     
+    
     var selection: Array<Requirement> = [
         Requirement(name: "Introductory Computer Science Courses", numCourses: 2, coursesTaken: [Course(name: "testcourse")]),
         Requirement(name: "Core Computer Science Courses", numCourses: 4, coursesTaken: []),
@@ -25,37 +26,10 @@ class RequirementsViewModel: ObservableObject {
         Requirement(name: "Junior Year Writing Requirement", numCourses: 1, coursesTaken: []),
         Requirement(name: "Integrative Experience Requirement", numCourses: 1, coursesTaken: [])
     ]
-
-    struct Requirement: Codable, Identifiable, Hashable{
-        let id = UUID()
-        let name: String
-        let numCourses: Int
-        var coursesTaken: Array<Course>
-        var completed = false
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-        static func == (lhs: Requirement, rhs: Requirement) -> Bool {
-                return lhs.name == rhs.name
-
-        }
-        
-    }
+    
     //determine if requirement is filled or not
     func isCompleted(requirement: Requirement) -> Bool{
         return requirement.numCourses == requirement.coursesTaken.count
-    }
-    struct Course: Codable, Identifiable, Hashable{
-        let id = UUID()
-        let name: String
-   
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-        static func == (lhs: Course, rhs: Course) -> Bool {
-                return lhs.name == rhs.name
-
-        }
     }
     
     func addRequirement(_ requirement: String) {

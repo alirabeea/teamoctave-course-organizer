@@ -14,9 +14,9 @@ struct UserInfo: Codable, Identifiable {
     var username = ""
     var email = ""
     var password = ""
-    var takenCourses: Array<String> = []
-    var interestedCourses: Array<String> = []
-    
+    var takenCourses: Array<Course> = []
+    var interestedCourses: Array<Course> = []
+    var requirementsNeeded: Array<Requirement> = []
 
     func getInterestedCourses(){
         //make call to server, parse users interested courses and add to array
@@ -24,8 +24,6 @@ struct UserInfo: Codable, Identifiable {
     func addInterestedCourse(course: String){
         //post new course to server
     }
-    func getRequirements(){
-        //get requirements from server, parse and store
-    }
+    
     
 }

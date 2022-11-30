@@ -7,6 +7,18 @@
 
 import Foundation
 
-struct Requirement: Codable {
-    //figure out vars for requirements
+struct Requirement: Codable, Identifiable, Hashable{
+    let id = UUID()
+    let name: String
+    let numCourses: Int
+    var coursesTaken: Array<Course>
+    var completed = false
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    static func == (lhs: Requirement, rhs: Requirement) -> Bool {
+            return lhs.name == rhs.name
+
+    }
+    
 }

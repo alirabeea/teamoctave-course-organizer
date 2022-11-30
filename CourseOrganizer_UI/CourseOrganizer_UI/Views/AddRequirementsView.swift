@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddRequirementsView: View {
     @ObservedObject var requirementViewModel: RequirementsViewModel
+    @State private var singleSelection: UUID?
     @State var requirementStr : String?
     let server = Server()
     
@@ -16,10 +17,16 @@ struct AddRequirementsView: View {
         
         NavigationView{
             VStack {
-                NavigationView {
-                    List(requirementViewModel.selection, id: \.self, selection: $requirementStr) {choice in
-                        //Text(choice)
-                    }.navigationTitle("Requirement Selection")
+                Text("Requirements")
+                    .font(.largeTitle)
+                List(selection: $singleSelection) {
+                    ForEach(requirementViewModel.selection) { requirement in
+                        Section(header: Text("\(requirement.name)")) {
+                            ForEach(requirement.coursesTaken) { course in
+                                Text("\(course.name)")
+                            }
+                        }
+                    }
                 }
                 Button("Add") {
                     if (requirementStr != nil) {

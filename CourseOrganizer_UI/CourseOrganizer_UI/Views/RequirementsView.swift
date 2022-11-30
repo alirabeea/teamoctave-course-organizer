@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// Show requirements the user has to fulfill
 struct RequirementsView: View {
     @ObservedObject var requirementViewModel = RequirementsViewModel()
     @State private var singleSelection: UUID?
@@ -15,23 +15,23 @@ struct RequirementsView: View {
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-                List(selection: $singleSelection) {
-                    ForEach(requirementViewModel.selection) { requirement in
-                                    Section(header: Text("\(requirement.name)")) {
-                                        ForEach(requirement.coursesTaken) { course in
-                                            Text("\(course.name)")
-                                        }
-                                    }
-                                }
-                            }
+//                List(selection: $singleSelection) {
+//                    ForEach(requirementViewModel.selection) { requirement in
+//                        Section(header: Text("\(requirement.name)")) {
+//                            ForEach(requirement.coursesTaken) { course in
+//                                Text("\(course.name)")
+//                            }
+//                        }
+//                    }
+//                }
+                List(requirementViewModel.requirements, id: \.self) { item in
+                    Text(item);
+                }
                             
                 NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
                     Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }
-            NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
-                Text("Add requirement")
-            }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("")
         }
     }
 }

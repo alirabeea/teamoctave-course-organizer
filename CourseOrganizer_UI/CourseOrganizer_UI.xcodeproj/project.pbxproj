@@ -31,6 +31,7 @@
 		E107887129065C0E00DA5403 /* InputCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107887029065C0E00DA5403 /* InputCourse.swift */; };
 		E10788732906629400DA5403 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10788722906629400DA5403 /* MainView.swift */; };
 		E1126786291436FE0009D447 /* RequirementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1126785291436FE0009D447 /* RequirementsViewModel.swift */; };
+		E171761929380AA5009BB959 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = E171761829380AA5009BB959 /* Course.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		E107887029065C0E00DA5403 /* InputCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCourse.swift; sourceTree = "<group>"; };
 		E10788722906629400DA5403 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E1126785291436FE0009D447 /* RequirementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsViewModel.swift; sourceTree = "<group>"; };
+		E171761829380AA5009BB959 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				B88F2DD72905EF5700AB9399 /* LoginViewModel.swift */,
 				B88F2DE729075EFE00AB9399 /* UserInfo.swift */,
 				B88F2DEB29076D3300AB9399 /* UserViewModel.swift */,
+				E171761829380AA5009BB959 /* Course.swift */,
 				B8E6AF0E2913300900A7C196 /* Requirement.swift */,
 				E1126785291436FE0009D447 /* RequirementsViewModel.swift */,
 			);
@@ -243,6 +246,7 @@
 				E107886D2906588B00DA5403 /* ViewRouter.swift in Sources */,
 				B88F2DE429074BE600AB9399 /* UserView.swift in Sources */,
 				2A08F97229146009006DB974 /* Package.swift in Sources */,
+				E171761929380AA5009BB959 /* Course.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
