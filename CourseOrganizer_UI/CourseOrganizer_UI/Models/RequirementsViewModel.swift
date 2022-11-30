@@ -16,14 +16,22 @@ class RequirementsViewModel: ObservableObject {
     
     @Published var requirements : Array<String> = [];
     
-    var selection: Array<Requirement> = [Requirement(name: "Introductory Computer Science Courses", numCourses: 2, coursesTaken: []),Requirement(name: "Core Computer Science Courses", numCourses: 4, coursesTaken: []), Requirement(name: "Mathematics Courses", numCourses: 4, coursesTaken: []),Requirement(name: "Upper-Level Elective Computer Science Courses", numCourses: 8, coursesTaken: []),Requirement(name: "Lab Science Courses", numCourses: 2, coursesTaken: []),Requirement(name: "Junior Year Writing Requirement", numCourses: 1, coursesTaken: []), Requirement(name: "Integrative Experience Requirement", numCourses: 1, coursesTaken: []) ]
+    var selection: Array<Requirement> = [
+        Requirement(name: "Introductory Computer Science Courses", numCourses: 2, coursesTaken: [Course(name: "testcourse")]),
+        Requirement(name: "Core Computer Science Courses", numCourses: 4, coursesTaken: []),
+        Requirement(name: "Mathematics Courses", numCourses: 4, coursesTaken: []),
+        Requirement(name: "Upper-Level Elective Computer Science Courses", numCourses: 8, coursesTaken: []),
+        Requirement(name: "Lab Science Courses", numCourses: 2, coursesTaken: []),
+        Requirement(name: "Junior Year Writing Requirement", numCourses: 1, coursesTaken: []),
+        Requirement(name: "Integrative Experience Requirement", numCourses: 1, coursesTaken: [])
+    ]
 
     struct Requirement: Codable, Identifiable, Hashable{
         let id = UUID()
         let name: String
         let numCourses: Int
         var coursesTaken: Array<Course>
-
+        var completed = false
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
         }
@@ -33,10 +41,13 @@ class RequirementsViewModel: ObservableObject {
         }
         
     }
+    //determine if requirement is filled or not
+    func isCompleted(requirement: Requirement) -> Bool{
+        return requirement.numCourses == requirement.coursesTaken.count
+    }
     struct Course: Codable, Identifiable, Hashable{
         let id = UUID()
         let name: String
-        let coversRequirement: Requirement
    
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
