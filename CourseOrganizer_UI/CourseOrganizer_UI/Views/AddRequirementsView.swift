@@ -18,7 +18,7 @@ struct AddRequirementsView: View {
             VStack {
                 NavigationView {
                     List(requirementViewModel.selection, id: \.self, selection: $requirementStr) {choice in
-                        Text(choice)
+                        //Text(choice)
                     }.navigationTitle("Requirement Selection")
                 }
                 Button("Add") {
