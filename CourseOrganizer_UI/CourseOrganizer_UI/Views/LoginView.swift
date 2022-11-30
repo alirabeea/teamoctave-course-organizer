@@ -34,9 +34,9 @@ struct LoginView: View {
                     ProgressView()
                 }
                 Button("Log In") {
-//                    loginVM.login { success in
-//                        authentication.updateValidation(success: success)
-//                    }
+                    loginVM.login { success in
+                        authentication.updateValidation(success: success)
+                    }
                     server.loginCSRF(){(json) in
                         print(json)
                         let csrf = json.csrf_token
@@ -55,7 +55,7 @@ struct LoginView: View {
                 .background(Color.blue)
                 .cornerRadius(10)
                 .onTapGesture {
-                   // loadAccount();
+                    loadAccount();
                 }
                 .disabled(loginVM.loginDisabled)
                 
