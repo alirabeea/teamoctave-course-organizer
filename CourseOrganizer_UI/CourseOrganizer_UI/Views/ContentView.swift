@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        TabView{
             VStack {
                 Text("Course Organizer")
                     .font(.largeTitle)
@@ -24,53 +24,108 @@ struct ContentView: View {
                         .font(.title)
                 }.padding(50)
                 Spacer()
-                HStack (alignment: .bottom){
-                    NavigationLink (destination: RequirementsView()){
-                        VStack (spacing: 5) {
-                            Image("Requirements")
-                                .renderingMode(.original)
-                                .buttonStyle(DirectingButton())
-                            Text("Requirements")
-                                .font(Font.footnote)
-                        }
-                    }.frame(alignment: .bottom)
-                    
-                    NavigationLink(destination: FindCoursesView()){
-                        VStack (spacing: 5) {
-                            Image("LookCourses")
-                                .renderingMode(.original)
-                                .buttonStyle(DirectingButton())
-                            Text("Find Courses")
-                                .font(Font.footnote)
-                        }
-                    }.frame(alignment: .bottom)
-                
-                    NavigationLink(destination: InterestedCoursesView()){
-                        VStack (spacing: 5) {
-                            Image("StarCourses")
-                                .renderingMode(.original)
-                                .buttonStyle(DirectingButton())
-                            Text("Interested Courses")
-                                .font(Font.footnote)
-                        }
-                    }.frame(alignment: .bottom)
-                    
-                    NavigationLink(destination: UserView()){
-                        VStack (spacing: 5) {
-                            Image("User")
-                                .renderingMode(.original)
-                                .buttonStyle(UserButton())
-                            Text("User")
-                                .font(Font.footnote)
-                        }
-                    }.frame(alignment: .bottom)
+            }.tabItem {
+                Image(systemName: "house.fill")
+                Text("Home").font(Font.footnote)
+            }
+            InterestedCoursesView().tabItem {
+                VStack (spacing: 5) {
+                    Image(systemName: "cart.fill")
+                    Text("Shopping Cart")
+                        .font(Font.footnote)
                 }
-            
-            }.padding(.bottom)
-            .padding()
+            }
+            RequirementsView().tabItem {
+                VStack (spacing: 5) {
+                    Image(systemName: "list.bullet.clipboard.fill")
+                        .renderingMode(.original)
+                        .buttonStyle(DirectingButton())
+                    Text("Requirements")
+                        .font(Font.footnote)
+                }
+            }
+            FindCoursesView().tabItem{
+                VStack {
+                    Image(systemName: "magnifyingglass")
+                        .renderingMode(.original)
+                        .buttonStyle(DirectingButton())
+                    Text("Find Courses")
+                        .font(Font.footnote)
+                }
+            }
+            UserView().tabItem {
+                VStack (spacing: 5) {
+                    Image(systemName: "person.fill")
+                        .renderingMode(.original)
+                        .buttonStyle(UserButton())
+                    Text("User")
+                        .font(Font.footnote)
+                }
+            }
         }
     }
 }
+//        NavigationView {
+//            VStack {
+//                Text("Course Organizer")
+//                    .font(.largeTitle)
+//                Spacer()
+//                VStack{
+//                    Image("icon1")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 50)
+//                        .foregroundColor(.accentColor)
+//                    Text("Welcome!")
+//                        .font(.title)
+//                }.padding(50)
+//                Spacer()
+//                HStack (alignment: .bottom){
+//                    NavigationLink (destination: RequirementsView()){
+//                        VStack (spacing: 5) {
+//                            Image("Requirements")
+//                                .renderingMode(.original)
+//                                .buttonStyle(DirectingButton())
+//                            Text("Requirements")
+//                                .font(Font.footnote)
+//                        }
+//                    }.frame(alignment: .bottom)
+//
+//                    NavigationLink(destination: FindCoursesView()){
+//                        VStack (spacing: 5) {
+//                            Image("LookCourses")
+//                                .renderingMode(.original)
+//                                .buttonStyle(DirectingButton())
+//                            Text("Find Courses")
+//                                .font(Font.footnote)
+//                        }
+//                    }.frame(alignment: .bottom)
+//
+//                    NavigationLink(destination: InterestedCoursesView()){
+//                        VStack (spacing: 5) {
+//                            Image("StarCourses")
+//                                .renderingMode(.original)
+//                                .buttonStyle(DirectingButton())
+//                            Text("Interested Courses")
+//                                .font(Font.footnote)
+//                        }
+//                    }.frame(alignment: .bottom)
+//
+//                    NavigationLink(destination: UserView()){
+//                        VStack (spacing: 5) {
+//                            Image("User")
+//                                .renderingMode(.original)
+//                                .buttonStyle(UserButton())
+//                            Text("User")
+//                                .font(Font.footnote)
+//                        }
+//                    }.frame(alignment: .bottom)
+//                }
+//
+//            }.padding(.bottom)
+//            .padding()
+//        }
+
 
 struct UserButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
