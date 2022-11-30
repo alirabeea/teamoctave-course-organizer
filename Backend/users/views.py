@@ -13,7 +13,8 @@ class LoginView(View):
         return JsonResponse({"status_code": 401, "csrf_token": get_token(request)})
 
     def post(self, request, *args, **kwargs):
-        user = authenticate(username=request.POST["username"], password=request.POST["password"])
+        data = json.loads(request.body)
+        user = authenticate(username=data["username"], password=data["password"])
         if user is not None:
             login(request, user)
             return JsonResponse({"status": "Success!", "status_code": 201})
@@ -37,7 +38,7 @@ class RegisterView(View):
             return JsonResponse({"status": "Success!", "status_code": 201})
         return JsonResponse(django_user.errors.as_json(), safe=False)
 
-class UserCourseView(LoginRequiredMixin, View):
+class UserCourseView(View):
 
     def get(self, request, *args, **kwargs):
         user = User.objects.get(django_user=request.user.id)
