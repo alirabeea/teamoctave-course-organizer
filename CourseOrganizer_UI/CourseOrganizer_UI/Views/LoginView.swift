@@ -11,6 +11,7 @@ struct LoginView: View {
     @StateObject private var loginVM = LoginViewModel()
     @EnvironmentObject var authentication: Authentication
     @State var message: String = "";
+    let server = Server()
     var body: some View {
         NavigationView {
             VStack {
@@ -35,6 +36,18 @@ struct LoginView: View {
                 Button("Log In") {
                     loginVM.login { success in
                         authentication.updateValidation(success: success)
+                    }
+                    server.loginCSRF(){(json) in
+                        print(json)
+                        let csrf = json.csrf_token
+                        server.login(email: loginVM.credentials.email, password: loginVM.credentials.password, csrf: csrf){(isLoggedIn) in
+                            if(isLoggedIn){
+                                print("logged in success")
+                                MainView()
+                            }else{
+                                print("unable to create account")
+                            }
+                        }
                     }
                 }
                 .foregroundColor(.white)

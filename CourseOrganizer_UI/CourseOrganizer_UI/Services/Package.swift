@@ -23,6 +23,16 @@ struct Register: Codable {
     let password2: String?
     let csrfmiddlewaretoken: String?
 }
+
+struct Login: Codable {
+    let username: String?
+    let password: String?
+    let csrfmiddlewaretoken: String?
+}
+struct LoginCsrf: Codable {
+    let status_code: Int
+    let csrf_token: String
+}
    
 
 struct Courses: Decodable, Encodable {

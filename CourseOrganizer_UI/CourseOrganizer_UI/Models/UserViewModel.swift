@@ -14,4 +14,5 @@ class UserViewModel: ObservableObject {
     var createUserDisabled: Bool {
         userInfo.firstName.isEmpty || userInfo.email.isEmpty || userInfo.password.isEmpty || userInfo.username.isEmpty || userInfo.netid.isEmpty
     }
+    
 }
