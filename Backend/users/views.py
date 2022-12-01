@@ -23,7 +23,7 @@ class LoginView(View):
 
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
-        return JsonResponse({"fields": ("name", "netid", "username", "password1", "password2", "email"),
+        return JsonResponse({"fields": ["name", "netid", "username", "password1", "password2", "email"],
                             "csrf_token": get_token(request) })
 
     def post(self, request, *args, **kwargs):
@@ -44,6 +44,20 @@ class UserCourseView(View):
         user = User.objects.get(django_user=request.user.id)
         user_courses = User_Course.objects.filter(user=user).values()
         return JsonResponse({"courses": list(user_courses), "csrf_token": get_token(request)})
+
+    # POST Data Format: {'courses': [1, 2, 3, 7, 16]}, where the numbers represent list of course ids 
+    def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            user = User.objects.get(django_user=request.user.id)
+            courses = data['courses']
+            for course in course:
+                object = User_Course(user=user, course_id=course)
+                object.save()
+            return JsonResponse({"status": "Success!", "status_code": 201})
+        except:
+            return JsonResponse({"status": "Error!", "status_code": 401})
+
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
