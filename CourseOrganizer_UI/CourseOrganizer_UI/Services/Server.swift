@@ -8,9 +8,6 @@
 import Foundation
 
 class Server {
-    var url = "http://127.0.0.1:8000/"
-    var registerEndpoint = "register/"
-    var coursesEndpoint = "courses/"
     
     // this function is needed to generate a CSRF token that should be sent with the POST
     //call this function and in the closure, call the function that deals with POST requests
@@ -30,7 +27,6 @@ class Server {
                 return
             }
             
-            
             var result: Requirements?
             
             //turn the result into a codable Register struct so that we can read the json data
@@ -47,9 +43,8 @@ class Server {
     }
     
     //same as above, but generates CSRF for a get/post courses request
-    func coursesCSRF(endpoint: String, completion: @escaping ((Courses) -> Void)){
-        
-        guard let url = URL(string: "http://127.0.0.1:8000/" + endpoint) else {
+    func coursesCSRF(completion: @escaping ((Requirements) -> Void)){
+        guard let url = URL(string: "http://127.0.0.1:8000/user/courses") else {
             print("api is down")
             return
         }
@@ -62,17 +57,14 @@ class Server {
                 print("something went wrong")
                 return
             }
-            
-            var result: Courses?
+            var result: Requirements?
             do{
-                result = try JSONDecoder().decode(Courses.self, from: data)
+                result = try JSONDecoder().decode(Requirements.self, from: data)
                 completion(result!)
             }catch{
                 print(String(describing: error))
             }
-            
         }.resume()
-        
     }
     
     //sends all of user data to the server to create a new user

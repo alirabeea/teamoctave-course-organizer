@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SignUpView: View {
     let server = Server()
-    @StateObject private var userVM = UserViewModel()
-    @State var message: String = "";
+    @StateObject private var userVM = UserViewModel();
+    @State var message: String = ""
+    // for comfirming password is same
     var body: some View {
         VStack{
            
@@ -35,6 +36,11 @@ struct SignUpView: View {
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
             SecureField("password", text: $userVM.userInfo.password)
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
+            SecureField("confirm Password", text: $userVM.confpass)
                 .padding()
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))

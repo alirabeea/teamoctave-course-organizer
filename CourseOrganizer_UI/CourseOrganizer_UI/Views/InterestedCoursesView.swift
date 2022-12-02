@@ -14,10 +14,22 @@ struct InterestedCoursesView: View {
     private var courseOne = "CS 311"
     private var courseTwo = "CS 325"
     var body: some View {
+        
+        //enable notification stack
+        HStack(alignment: .bottom) {
+            Button("Enable Notification") {
+                UNUserNotificationCenter.current().requestAuthorization(options:[.alert,.badge,.sound]) {
+                        result, error in
+                        if let error = error {
+                            print(error)
+                        }
+                    }
+            }
+            .buttonStyle(.bordered)
+        }.padding()
+        
         ZStack{
-            
             VStack{
-                
                     
                 Text("Interested Courses")
                     .font(.largeTitle)
