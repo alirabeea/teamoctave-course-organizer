@@ -14,56 +14,48 @@ struct InterestedCoursesView: View {
     private var courseOne = "CS 311"
     private var courseTwo = "CS 325"
     var body: some View {
-        
-        //enable notification stack
-        HStack(alignment: .bottom) {
-            Button("Enable Notification") {
-                UNUserNotificationCenter.current().requestAuthorization(options:[.alert,.badge,.sound]) {
-                        result, error in
-                        if let error = error {
-                            print(error)
-                        }
-                    }
-            }
-            .buttonStyle(.bordered)
-        }.padding()
-        
-        ZStack{
-            VStack{
-                    
-                Text("Interested Courses")
-                    .font(.largeTitle)
-                    .onAppear(){
-                        user.getInterestedCourses()
-                    }.padding()
-                Divider()
-                    .padding()
-                VStack(){
-                    Text(courseOne)
-                    Text(courseTwo)
-                }.font(.title)
-                
-                Spacer()
-                HStack(alignment: .bottom){
-                    VStack{
-                        Text("Add a course").font(.headline)
-                        TextField("Enter course name", text: $newCourse)
-                            .padding()
-                            .frame(width: 300, height: 50)
-                            .background(Color.black.opacity(0.05))
-                            .cornerRadius(10)
-                            .onSubmit{
-                                user.addInterestedCourse(course: newCourse)
+        VStack{
+            Text("Interested Courses")
+                .font(.largeTitle)
+                .onAppear(){
+                    user.getInterestedCourses()
+                }.padding()
+            Divider()
+                .padding()
+            VStack(){
+                Text(courseOne)
+                Text(courseTwo)
+            }.font(.title)
+            
+            //enable notification stack
+            HStack(alignment: .bottom) {
+                Button("Enable Notification") {
+                    UNUserNotificationCenter.current().requestAuthorization(options:[.alert,.badge,.sound]) {
+                            result, error in
+                            if let error = error {
+                                print(error)
                             }
+                        }
+                }
+                .buttonStyle(.bordered)
+            }.padding()
+            
+            Spacer()
+            HStack(alignment: .bottom){
+                VStack{
+                    Text("Add a course").font(.headline)
+                    TextField("Enter course name", text: $newCourse)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                        .onSubmit{
+                            user.addInterestedCourse(course: newCourse)
                     }
                 }
-                
-                
-                
             }
-            
         }
-
+        
     }
 
 }
