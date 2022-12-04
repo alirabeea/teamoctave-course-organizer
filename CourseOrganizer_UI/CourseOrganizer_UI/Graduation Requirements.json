@@ -1,0 +1,98 @@
+[
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 121",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 121\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 187",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 187\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "MATH 131",
+  "course_quantity": 1,
+  "courses_satisfying": "\"MATH 131\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "MATH 132",
+  "course_quantity": 1,
+  "courses_satisfying": "\"MATH 132\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "MATH 233",
+  "course_quantity": 1,
+  "courses_satisfying": "\"MATH 233\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "MATH 235",
+  "course_quantity": 1,
+  "courses_satisfying": "\"MATH 235\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 220",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 220\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 230",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 230\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 240",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 240\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 250",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 250\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "COMPSCI 311",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 311\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "Integrative Experience",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 320, COMPSCI 326\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "Junior Year Writing",
+  "course_quantity": 1,
+  "courses_satisfying": "\"COMPSCI 305\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "CS 300+ Elective",
+  "course_quantity": 2,
+  "courses_satisfying": "\"COMPSCI 325, COMPSCI 328, COMPSCI 333, COMPSCI 335, COMPSCI 345, COMPSCI 348, COMPSCI 360, COMPSCI 365, COMPSCI370, COMPSCI 373, COMPSCI 377, COMPSCI 383, COMPSCI 389, COMPSCI 390N, COMPSCI 390R\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "CS 300+ Elective \/ Outside Approved Elective",
+  "course_quantity": 1,
+  "courses_satisfying": "\"MATH 411, MATH 545, MATH 551, MATH 552, ECE 353, ECE 547, ECE 668, COMPSCI 325, COMPSCI 328, COMPSCI 333, COMPSCI 335, COMPSCI 345, COMPSCI 348, COMPSCI 360, COMPSCI 365, COMPSCI370, COMPSCI 373, COMPSCI 377, COMPSCI 383, COMPSCI 389, COMPSCI 390N, COMPSCI 390R\""
+ },
+ {
+  "major": "BS CS",
+  "graduation_requirement": "CS 400+ Elective",
+  "course_quantity": 3,
+  "courses_satisfying": "\"COMPSCI 403, COMPSCI 410, COMPSCI 420, COMPSCI 429, COMPSCI 445, COMPSCI 446, COMPSCI 453,  COMPSCI 460, COMPSCI 461, COMPSCI 466, COMPSCI 474, COMPSCI 490A, COMPSCI 490P, COMPSCI 490S, COMPSCI 490U, COMPSCI 501, COMPSCI 503, COMPSCI 508, COMPSCI 513, COMPSCI 514, COMPSCI 520, COMPSCI 521, COMPSCI 527, COMPSCI 528, COMPSCI 529, COMPSCI 530, COMPSCI 532, COMPSCI 535, COMPSCI 546, COMPSCI 550, COMPSCI 560, COMPSCI 561, COMPSCI 563, COMPSCI 571, COMPSCI 574, COMPSCI 575, COMPSCI 576, COMPSCI 577, COMPSCI 578, COMPSCI 585, COMPSCI 589, COMPSCI 590A, COMPSCI 590B, COMPSCI 590C, COMPSCI 590CC, COMPSCI 590E, COMPSCI 590ED, COMPSCI 590F, COMPSCI 590G, COMPSCI 590GC, COMPSCI 590IV\""
+ }
+]
