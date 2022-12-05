@@ -129,6 +129,7 @@ class Server {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue(csrf, forHTTPHeaderField: "X-CSRFToken")
             
             URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
                 
@@ -149,6 +150,8 @@ class Server {
             }).resume()
             
     }
+
+    
         
         func loginCSRF(completion: @escaping ((LoginCsrf) -> Void)){
             
