@@ -33,16 +33,16 @@ class RequirementsViewModel: ObservableObject {
         return false
     }
     
-    func loadCourseInfo() -> [Requirement]? {
+    func loadCourseInfo() -> [Requirement]?  {
         if let url = Bundle.main.url(forResource: "Graduation Requirements", withExtension: "json") {
             do {
                 let jsonData = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let req = try decoder.decode([Requirement].self, from: jsonData)
-                print(req)
-                //return req
+                return req
             } catch {
                 print(error)
+                print("not ok")
             }
         }
         return []

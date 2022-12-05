@@ -8,7 +8,7 @@
 import Foundation
 
 struct Requirement: Codable, Identifiable, Hashable{
-    var id : UUID
+    var id : UUID? = UUID()
 //    let name: String
 //    let numCourses: Int
 //    var coursesTaken: Array<Course>
