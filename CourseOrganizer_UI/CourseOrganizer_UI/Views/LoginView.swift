@@ -34,16 +34,18 @@ struct LoginView: View {
                     ProgressView()
                 }
                 Button("Log In") {
-                    loginVM.login { success in
-                        authentication.updateValidation(success: success)
-                    }
+                    
                     server.loginCSRF(){(json) in
                         print(json)
                         let csrf = json.csrf_token
+                        print("here is csrf: \(csrf)")
                         server.login(email: loginVM.credentials.email, password: loginVM.credentials.password, csrf: csrf){(isLoggedIn) in
                             if(isLoggedIn){
                                 print("logged in success")
-                                MainView()
+                                
+                                authentication.updateValidation(success: true)
+                                
+                                
                             }else{
                                 print("unable to create account")
                             }
