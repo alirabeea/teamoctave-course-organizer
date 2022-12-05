@@ -15,11 +15,11 @@ struct RequirementsView: View {
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-                List(requirementViewModel.requirements, id: \.self) { item in
-                    Text(item.name);
+                List(requirementViewModel.chosenRequirement, id: \.self) { item in
+                    Text(item.graduation_requirement);
                 }
                             
-                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel, courseInfo: requirementViewModel.loadCourseInfo()!)){
+                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel, gradReq: requirementViewModel.loadCourseInfo()!)){
                     Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }

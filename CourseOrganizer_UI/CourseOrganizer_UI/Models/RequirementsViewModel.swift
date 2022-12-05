@@ -9,13 +9,7 @@ import Foundation
 import SwiftUI
 
 class RequirementsViewModel: ObservableObject {
-//    struct Req: Identifiable, Hashable {
-//        let name: String
-//        let id = UUID()
-//    }
-    
-    @Published var requirements : Array<Course> = [];
-    
+    @Published var chosenRequirement : Array<Requirement> = [];
  
 //    var selection: Array<Requirement> = [
 //        Requirement(name: "Introductory Computer Science Courses", numCourses: 2, coursesTaken: [Course(name: "CS121"), Course(name: "CS187")]),
@@ -48,8 +42,8 @@ class RequirementsViewModel: ObservableObject {
         return []
     }
     
-    func addRequirement(_ requirement: Course) {
-        self.requirements.insert(requirement, at: 0);
-        print(self.requirements);
+    func addRequirement(_ requirement: Requirement) {
+        self.chosenRequirement.insert(requirement, at: 0);
+        print(self.chosenRequirement);
     }
 }
