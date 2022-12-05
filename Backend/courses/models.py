@@ -6,6 +6,7 @@ class Course(models.Model):
     name = models.CharField(max_length=64)
     department = models.CharField(max_length=64)
     credits = models.IntegerField()
+    verbose = models.CharField(max_length=64)
 
     def __str__(self):
         return f"{self.number}"

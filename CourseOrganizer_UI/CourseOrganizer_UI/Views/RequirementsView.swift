@@ -27,7 +27,7 @@ struct RequirementsView: View {
 
                             
                 NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
-                    Text("Add course")
+                    Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }
         }

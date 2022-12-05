@@ -16,6 +16,7 @@ class Requirement(models.Model):
     # print(comp_sci) # This will print <Major: "Computer Science">
     # requirements = comp_sci.requirements
     description = models.CharField(max_length=64)
+    number_courses = models.IntegerField()
     
     def __str__(self):
         return f"{self.major} - {self.description}"
