@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddRequirementsView: View {
-    @ObservedObject var requirementViewModel: RequirementsViewModel
+    @State var requirementViewModel = RequirementsViewModel()
     @State private var singleSelection: UUID?
     @State var requirementStr : String?
     let server = Server()
@@ -44,8 +44,8 @@ struct AddRequirementsView: View {
     }
 }
 
-//struct AddRequirementsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddRequirementsView(requirements: )
-//    }
-//}
+struct AddRequirementsView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddRequirementsView()
+    }
+}
