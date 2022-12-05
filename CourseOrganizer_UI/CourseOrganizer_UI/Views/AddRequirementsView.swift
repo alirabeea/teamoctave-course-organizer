@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct AddRequirementsView: View {
-<<<<<<< HEAD
     @State var requirementViewModel = RequirementsViewModel()
-    @State private var singleSelection: UUID?
-=======
-    @ObservedObject var requirementViewModel: RequirementsViewModel
     @State private var singleSelection: Requirement?
->>>>>>> d460a3fb6ef9d0c2539891c6746d5bf4a3f147a8
     @State var requirementStr : String?
     var gradReq: [Requirement]
     let server = Server()
@@ -48,16 +43,8 @@ struct AddRequirementsView: View {
     }
 }
 
-<<<<<<< HEAD
-struct AddRequirementsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddRequirementsView()
-    }
-}
-=======
 //struct AddRequirementsView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddRequirementsView(requirementViewModel: RequirementsViewModel())
 //    }
 //}
->>>>>>> d460a3fb6ef9d0c2539891c6746d5bf4a3f147a8
