@@ -11,42 +11,36 @@ struct AddRequirementsView: View {
     @ObservedObject var requirementViewModel: RequirementsViewModel
     @State private var singleSelection: Requirement?
     @State var requirementStr : String?
+    var gradReq: [Requirement]
     let server = Server()
-    let courseInfo: [Requirement]
     var body: some View {
         NavigationView{
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-                //List(selection: $singleSelection) {
-                
-//                List(requirementViewModel.selection, selection: $singleSelection) { requirement in
-//                        //print($singleSelection)
-//                    Section(".\(requirement.name)") {
-//                        ForEach(requirement.coursesTaken) { course in
-//                            Text("\(course.name)")
-//                        }.padding(0)
-//                    }
-//                    Text(requirement.name).font(.headline).padding(0)
-//               }
-            
-                    
-                    
-                    Button("Add") {
-                        if (singleSelection != nil) {
-                            //requirementViewModel.addRequirement(singleSelection!)
-                            print(singleSelection!)
-                            server.registerCSRF(){(json) in
-                                let csrf = json.csrf_token
-                                //server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
-                                print("csrf: " + csrf)
-                            }
+                List(gradReq, id: \.self, selection: $singleSelection) { requirement in
+                    Section(requirement.graduation_requirement) {
+                        ForEach(requirement.courses_satisfying, id: \.self) { course in
+                            Text(course)
                         }
                     }
                 }
-            //}
+                    
+                    
+                Button("Add") {
+                    if (singleSelection != nil) {
+                        requirementViewModel.addRequirement(singleSelection!)
+                        print(singleSelection!)
+//                            server.registerCSRF(){(json) in
+//                                let csrf = json.csrf_token
+//                                //server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
+//                                print("csrf: " + csrf)
+//                            }
+                    }
+                }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
+            }
         }
-        }
+    }
 }
 
 //struct AddRequirementsView_Previews: PreviewProvider {
