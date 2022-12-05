@@ -15,20 +15,11 @@ struct RequirementsView: View {
             VStack {
                 Text("Requirements")
                     .font(.largeTitle)
-//                List(selection: $singleSelection) {
-//                    ForEach(requirementViewModel.selection) { requirement in
-//                        Section(header: Text("\(requirement.name)")) {
-//                            ForEach(requirement.coursesTaken) { course in
-//                                Text("\(course.name)")
-//                            }
-//                        }
-//                    }
-//                }
                 List(requirementViewModel.requirements, id: \.self) { item in
-                    Text(item);
+                    Text(item.name);
                 }
                             
-                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel)){
+                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel, courseInfo: requirementViewModel.loadCourseInfo()!)){
                     Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }
