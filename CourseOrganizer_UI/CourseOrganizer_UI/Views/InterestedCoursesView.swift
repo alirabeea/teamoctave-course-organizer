@@ -10,6 +10,7 @@ import SwiftUI
 struct InterestedCoursesView: View {
     @State private var newCourse = ""
     @State var user = UserInfo()
+    @State var notification = NotificationSwitch()
     //hard coded until we can pull from server
     private var courseOne = "CS 311"
     private var courseTwo = "CS 325"
@@ -30,12 +31,7 @@ struct InterestedCoursesView: View {
             //enable notification stack
             HStack(alignment: .bottom) {
                 Button("Enable Notification") {
-                    UNUserNotificationCenter.current().requestAuthorization(options:[.alert,.badge,.sound]) {
-                            result, error in
-                            if let error = error {
-                                print(error)
-                            }
-                        }
+                    notification.enableNotification()
                 }
                 .buttonStyle(.bordered)
             }.padding()
