@@ -42,9 +42,14 @@ class Server {
         
     }
     
-    //same as above, but generates CSRF for a get/post courses request
-    func coursesCSRF(completion: @escaping ((Requirements) -> Void)){
-        guard let url = URL(string: "http://127.0.0.1:8000/user/courses") else {
+    struct Message: Decodable {
+        let requirements: [Requirement]
+    }
+    
+    //same as above, but generates CSRF for a get/post graduation requirement request
+    func graduationReqCSRF(completion: @escaping ((Message) -> Void)){
+        
+        guard let url = URL(string: "http://127.0.0.1:8000/graduation/requirements/") else {
             print("api is down")
             return
         }
@@ -57,13 +62,17 @@ class Server {
                 print("something went wrong")
                 return
             }
-            var result: Requirements?
+            var result: Message
+            
+            //turn the result into a codable Register struct so that we can read the json data
             do{
-                result = try JSONDecoder().decode(Requirements.self, from: data)
-                completion(result!)
+                result = try JSONDecoder().decode(Message.self, from: data)
+                print(result)
+                completion(result)
             }catch{
                 print(String(describing: error))
             }
+            
         }.resume()
     }
     
@@ -150,8 +159,6 @@ class Server {
             }).resume()
             
     }
-
-    
         
         func loginCSRF(completion: @escaping ((LoginCsrf) -> Void)){
             
@@ -168,8 +175,6 @@ class Server {
                     print("something went wrong")
                     return
                 }
-                
-                
                 var result: LoginCsrf?
                 
                 //turn the result into a codable Register struct so that we can read the json data

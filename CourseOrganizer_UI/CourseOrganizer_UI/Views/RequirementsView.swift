@@ -18,14 +18,14 @@ struct RequirementsView: View {
                 
                 List(requirementViewModel.chosenRequirement, id: \.self) { item in
                     //Text(item.graduation_requirement);
-                    Section(header: Text("\(item.graduation_requirement)")) {
-                        ForEach(item.courses_satisfying,  id: \.self) { course in
-                            Text(course)
+                    Section(item.description) {
+                        ForEach(item.courses,  id: \.self) { course in
+                            Text("\(course.course__verbose)")
                         }
                     }
                 }
 
-                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel, gradReq: requirementViewModel.loadCourseInfo()!)){
+                NavigationLink(destination: AddRequirementsView(requirementViewModel: requirementViewModel, gradReq: requirementViewModel.getRequirement())){
                     Text("Add requirement")
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }

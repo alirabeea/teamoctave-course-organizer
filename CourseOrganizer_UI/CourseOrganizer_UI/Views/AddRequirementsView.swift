@@ -11,7 +11,7 @@ struct AddRequirementsView: View {
     @State var requirementViewModel = RequirementsViewModel()
     @State private var singleSelection: Requirement?
     @State var requirementStr : String?
-    var gradReq: [Requirement]
+    @State var gradReq: [Requirement]
     let server = Server()
     var body: some View {
         NavigationView{
@@ -19,9 +19,9 @@ struct AddRequirementsView: View {
                 Text("Requirements")
                     .font(.largeTitle)
                 List(gradReq, id: \.self, selection: $singleSelection) { requirement in
-                    Section(requirement.graduation_requirement) {
-                        ForEach(requirement.courses_satisfying, id: \.self) { course in
-                            Text(course)
+                    Section(requirement.description) {
+                        ForEach(requirement.courses, id: \.self) { course in
+                            Text(course.course__verbose)
                         }
                     }
                 }
