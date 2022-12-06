@@ -11,7 +11,7 @@ import SwiftUI
 class RequirementsViewModel: ObservableObject {
     @Published var chosenRequirement : Array<Requirement> = [];
     let server = Server()
-    @State var requirements = [Requirement]()
+    @Published var requirements = [Requirement]()
     
     //determine if requirement is filled or not
     func isCompleted(requirement: Requirement) -> Bool{
@@ -25,31 +25,6 @@ class RequirementsViewModel: ObservableObject {
         }
         
         //same as above, but generates CSRF for a get/post graduation requirement request
-//        guard let url = URL(string: "http://127.0.0.1:8000/graduation/requirements/") else {
-//            print("api is down")
-//            return
-//        }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//
-//        URLSession.shared.dataTask(with: url) {
-//            data, response, error in
-//            guard let data = data, error == nil else{
-//                print("something went wrong")
-//                return
-//            }
-//            var result: Message
-//            //turn the result into a codable Register struct so that we can read the json data
-//            do{
-//                result = try JSONDecoder().decode(Message.self, from: data)
-//                self.requirements = result.requirements
-//                print(result.requirements)
-//            }catch{
-//                print("bye")
-//                print(String(describing: error))
-//            }
-//
-//        }.resume()
         guard let url = URL(string: "http://127.0.0.1:8000/graduation/requirements/") else {
             print("api is down")
             return
@@ -63,8 +38,6 @@ class RequirementsViewModel: ObservableObject {
                 if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
                     DispatchQueue.main.async {
                         self.requirements = response.requirements;
-                        print(response.requirements);
-                        // when print out self.requirement, empty array is printed
                     }
                     return
                 }

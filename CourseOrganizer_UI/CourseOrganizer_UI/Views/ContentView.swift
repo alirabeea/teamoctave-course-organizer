@@ -65,66 +65,6 @@ struct ContentView: View {
         }
     }
 }
-//        NavigationView {
-//            VStack {
-//                Text("Course Organizer")
-//                    .font(.largeTitle)
-//                Spacer()
-//                VStack{
-//                    Image("icon1")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 50)
-//                        .foregroundColor(.accentColor)
-//                    Text("Welcome!")
-//                        .font(.title)
-//                }.padding(50)
-//                Spacer()
-//                HStack (alignment: .bottom){
-//                    NavigationLink (destination: RequirementsView()){
-//                        VStack (spacing: 5) {
-//                            Image("Requirements")
-//                                .renderingMode(.original)
-//                                .buttonStyle(DirectingButton())
-//                            Text("Requirements")
-//                                .font(Font.footnote)
-//                        }
-//                    }.frame(alignment: .bottom)
-//
-//                    NavigationLink(destination: FindCoursesView()){
-//                        VStack (spacing: 5) {
-//                            Image("LookCourses")
-//                                .renderingMode(.original)
-//                                .buttonStyle(DirectingButton())
-//                            Text("Find Courses")
-//                                .font(Font.footnote)
-//                        }
-//                    }.frame(alignment: .bottom)
-//
-//                    NavigationLink(destination: InterestedCoursesView()){
-//                        VStack (spacing: 5) {
-//                            Image("StarCourses")
-//                                .renderingMode(.original)
-//                                .buttonStyle(DirectingButton())
-//                            Text("Interested Courses")
-//                                .font(Font.footnote)
-//                        }
-//                    }.frame(alignment: .bottom)
-//
-//                    NavigationLink(destination: UserView()){
-//                        VStack (spacing: 5) {
-//                            Image("User")
-//                                .renderingMode(.original)
-//                                .buttonStyle(UserButton())
-//                            Text("User")
-//                                .font(Font.footnote)
-//                        }
-//                    }.frame(alignment: .bottom)
-//                }
-//
-//            }.padding(.bottom)
-//            .padding()
-//        }
 
 
 struct UserButton: ButtonStyle {
