@@ -40,7 +40,7 @@ struct InterestedCoursesView: View {
             } else {
                 HStack(alignment: .bottom) {
                     Button("Schedule Notification") {
-                        notification.scheduleNotification(course: <#T##Course#>)
+                        notification.scheduleNotification(course: Course(course__id: 1, course__verbose: "Test Course"))
                     }
                     .buttonStyle(.bordered)
                 }.padding()
