@@ -45,11 +45,11 @@ class UserCourseView(View):
         user_courses = User_Course.objects.filter(user=user).values()
         return JsonResponse({"courses": list(user_courses), "csrf_token": get_token(request)})
 
-    # POST Data Format: {'courses': [1, 2, 3, 7, 16]}, where the numbers represent list of course ids 
+    # POST Data Format: {'courses': [1, 2, 3, 7, 16], 'username': 'blah blah}, where the numbers represent list of course ids 
     def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body)
-            user = User.objects.get(django_user=request.user.id)
+            user = User.objects.get(django_user__username=data["username"])
             courses = data['courses']
             for course in course:
                 object = User_Course(user=user, course_id=course)

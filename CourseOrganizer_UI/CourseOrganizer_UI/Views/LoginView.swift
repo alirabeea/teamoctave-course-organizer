@@ -34,7 +34,6 @@ struct LoginView: View {
                     ProgressView()
                 }
                 Button("Log In") {
-                    
                     server.loginCSRF(){(json) in
                         print(json)
                         let csrf = json.csrf_token
@@ -44,8 +43,7 @@ struct LoginView: View {
                                 print("logged in success")
                                 
                                 authentication.updateValidation(success: true)
-                                
-                                
+
                             }else{
                                 print("unable to create account")
                             }
@@ -56,9 +54,6 @@ struct LoginView: View {
                 .frame(width: 300, height: 50)
                 .background(Color.blue)
                 .cornerRadius(10)
-                .onTapGesture {
-                    loadAccount();
-                }
                 .disabled(loginVM.loginDisabled)
                 
                 
@@ -66,10 +61,6 @@ struct LoginView: View {
                     Text("Sign Up")
                         .foregroundColor(.blue)
                 }
-             
-                Spacer()
-                Text("Message from server:")
-                Text(message)
             }
             .autocapitalization(.none)
             .padding()

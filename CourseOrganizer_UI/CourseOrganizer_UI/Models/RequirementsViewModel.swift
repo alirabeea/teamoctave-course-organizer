@@ -10,16 +10,8 @@ import SwiftUI
 
 class RequirementsViewModel: ObservableObject {
     @Published var chosenRequirement : Array<Requirement> = [];
- 
-//    var selection: Array<Requirement> = [
-//        Requirement(name: "Introductory Computer Science Courses", numCourses: 2, coursesTaken: [Course(name: "CS121"), Course(name: "CS187")]),
-//        Requirement(name: "Core Computer Science Courses", numCourses: 4, coursesTaken: [Course(name: "CS220"), Course(name: "CS230"), Course(name: "CS240"),Course(name: "CS250")]),
-//        Requirement(name: "Mathematics Courses", numCourses: 4, coursesTaken: []),
-//        Requirement(name: "Upper-Level Elective Computer Science Courses", numCourses: 8, coursesTaken: []),
-//        Requirement(name: "Lab Science Courses", numCourses: 2, coursesTaken: []),
-//        Requirement(name: "Junior Year Writing Requirement", numCourses: 1, coursesTaken: []),
-//        Requirement(name: "Integrative Experience Requirement", numCourses: 1, coursesTaken: [])
-//    ]
+    let server = Server()
+    @Published var requirements = [Requirement]()
     
     //determine if requirement is filled or not
     func isCompleted(requirement: Requirement) -> Bool{
@@ -27,19 +19,35 @@ class RequirementsViewModel: ObservableObject {
         return false
     }
     
-    func loadCourseInfo() -> [Requirement]?  {
-        if let url = Bundle.main.url(forResource: "Graduation Requirements", withExtension: "json") {
-            do {
-                let jsonData = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let req = try decoder.decode([Requirement].self, from: jsonData)
-                return req
-            } catch {
-                print(error)
-                print("not ok")
-            }
+    func loadCourseInfo() {
+        struct Message: Decodable {
+            let requirements: [Requirement]
         }
-        return []
+        
+        //same as above, but generates CSRF for a get/post graduation requirement request
+        guard let url = URL(string: "http://127.0.0.1:8000/graduation/requirements/") else {
+            print("api is down")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.requirements = response.requirements;
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func getRequirement() -> [Requirement]{
+        self.loadCourseInfo()
+        return requirements
     }
     
     func addRequirement(_ requirement: Requirement) {
