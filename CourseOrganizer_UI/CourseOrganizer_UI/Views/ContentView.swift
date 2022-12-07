@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var notification: NotificationSwitch
     var body: some View {
         TabView{
             VStack {
@@ -35,6 +36,7 @@ struct ContentView: View {
                         .font(Font.footnote)
                 }
             }
+            .environmentObject(notification)
             RequirementsView().tabItem {
                 VStack (spacing: 5) {
                     Image(systemName: "list.bullet.clipboard.fill")
@@ -89,5 +91,6 @@ struct DirectingButton: ButtonStyle {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(NotificationSwitch())
     }
 }
