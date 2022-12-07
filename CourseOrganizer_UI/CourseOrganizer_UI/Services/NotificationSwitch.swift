@@ -22,7 +22,7 @@ class NotificationSwitch {
     
     func scheduleNotification(course: Course) {
         let content = UNMutableNotificationContent()
-        content.title = "Scheduled course update for " + course.name + " !"
+        content.title = "Scheduled course update for " + course.course__verbose + " !"
         content.body = "Your daily reminder to check your course info to see if there is an update for your interested courses!"
         content.sound = UNNotificationSound.default
         

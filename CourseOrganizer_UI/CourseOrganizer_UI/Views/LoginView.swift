@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @StateObject private var loginVM = LoginViewModel()
     @EnvironmentObject var authentication: Authentication
+    @EnvironmentObject var userVM: UserViewModel
     @State var message: String = "";
     let server = Server()
     var body: some View {
@@ -41,7 +42,6 @@ struct LoginView: View {
                         server.login(email: loginVM.credentials.email, password: loginVM.credentials.password, csrf: csrf){(isLoggedIn) in
                             if(isLoggedIn){
                                 print("logged in success")
-                                
                                 authentication.updateValidation(success: true)
 
                             }else{
@@ -57,7 +57,7 @@ struct LoginView: View {
                 .disabled(loginVM.loginDisabled)
                 
                 
-                NavigationLink(destination: SignUpView()){
+                NavigationLink(destination: SignUpView().environmentObject(userVM)){
                     Text("Sign Up")
                         .foregroundColor(.blue)
                 }
@@ -66,32 +66,6 @@ struct LoginView: View {
             .padding()
             .disabled(loginVM.showProgressView)
         }
-    }
-    
-    struct Message: Decodable {
-        let data: String;
-    }
-    
-    func loadAccount() {
-        guard let url = URL(string: "http://127.0.0.1:8000/users/test/") else {
-            print("api is down")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
-                    DispatchQueue.main.async {
-                        message = response.data;
-                        print(response.data);
-                    }
-                    return
-                }
-            }
-        }.resume()
     }
 }
 

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userVM: UserViewModel
+
     var body: some View {
         TabView{
             VStack {
@@ -40,7 +42,7 @@ struct ContentView: View {
                     Image(systemName: "list.bullet.clipboard.fill")
                         .renderingMode(.original)
                         .buttonStyle(DirectingButton())
-                    Text("Requirements")
+                    Text("Taken courses")
                         .font(Font.footnote)
                 }
             }
@@ -88,6 +90,6 @@ struct DirectingButton: ButtonStyle {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(UserViewModel())
     }
 }

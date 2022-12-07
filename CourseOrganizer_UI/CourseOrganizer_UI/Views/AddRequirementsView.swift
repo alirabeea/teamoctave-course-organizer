@@ -11,12 +11,12 @@ struct AddRequirementsView: View {
     @State var requirementViewModel = RequirementsViewModel()
     @State private var singleSelection: Requirement?
     @State var requirementStr : String?
-    @State var gradReq: [Requirement]
-    let server = Server()
+    @State var gradReq = [Requirement]()
+    @EnvironmentObject var userVM: UserViewModel
     var body: some View {
         NavigationView{
             VStack {
-                Text("Requirements")
+                Text("Courses")
                     .font(.largeTitle)
                 List(gradReq, id: \.self, selection: $singleSelection) { requirement in
                     Section(requirement.description) {
@@ -25,21 +25,79 @@ struct AddRequirementsView: View {
                         }
                     }
                 }
-                    
+                .onAppear(perform: self.loadCourseInfo)                
                     
                 Button("Add") {
                     if (singleSelection != nil) {
                         requirementViewModel.addRequirement(singleSelection!)
-                        print(singleSelection!)
-//                            server.registerCSRF(){(json) in
-//                                let csrf = json.csrf_token
-//                                //server.updateRequirement(requirements: requirementViewModel.requirements, csrf: csrf)
-//                                print("csrf: " + csrf)
-//                            }
+                        postCourseInfo(courses: requirementViewModel.getRequirement())
                     }
                 }.foregroundColor(.white).frame(width: 300, height: 50).background(Color.blue).cornerRadius(10).navigationBarTitle("").navigationBarBackButtonHidden(true)
             }
         }
+    }
+    
+    func loadCourseInfo() {
+        struct Message: Decodable {
+            let requirements: [Requirement]
+        }
+        
+        guard let url = URL(string: "http://127.0.0.1:8000/graduation/requirements/") else {
+            print("api is down")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response: Message = try? JSONDecoder().decode(Message.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.gradReq = response.requirements;
+                        requirementViewModel.setRequirement(response.requirements)
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func postCourseInfo(courses: [Requirement]) {
+        struct Message: Codable {
+            var courses: [Int]
+            var username: String
+            
+        }
+        guard let url = URL(string: "http://127.0.0.1:8000/users/courses/") else {
+            print("api is down")
+            return
+        }
+        var course_id = [Int]()
+        for c in courses {
+            course_id.append(c.id)
+        }
+        let requirementDataModel = Message(courses: course_id, username: userVM.userInfo.username)
+        
+        guard let jsonData = try? JSONEncoder().encode(requirementDataModel) else{
+            print("could not convert model to JSON data")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("takenCourses/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = jsonData
+        
+        URLSession.shared.uploadTask(with: request, from: jsonData, completionHandler: {data, response, error in
+            
+            guard let data = data, error == nil else{
+                print("something went wrong")
+                print(String(describing: error))
+                return
+            }
+        }).resume()
     }
 }
 
