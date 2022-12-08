@@ -39,7 +39,6 @@ class Server {
             }
             
         }.resume()
-        
     }
     
     struct Message: Decodable {
@@ -191,7 +190,7 @@ class Server {
         }
         
         func updateRequirement(requirements: Array<String>, csrf: String) {
-            guard let url = URL(string: "http://127.0.0.1:8000/users/register/") else {
+            guard let url = URL(string: "http://127.0.0.1:8000/users/courses/") else {
                 print("api is down")
                 return
             }
