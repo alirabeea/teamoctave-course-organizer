@@ -9,8 +9,9 @@ import Foundation
 import UserNotifications
 
 
-class NotificationSwitch {
+class NotificationSwitch: ObservableObject {
     let notificationCenter = UNUserNotificationCenter.current()
+    var isenabled = false
     
     func enableNotification() {
         notificationCenter.requestAuthorization(options:[.alert,.badge,.sound]) { result, error in
@@ -18,6 +19,12 @@ class NotificationSwitch {
                     print(error)
                 }
         }
+        isenabled = true
+    }
+    
+    func getnotificationsettings() async {
+        let settings = await notificationCenter.notificationSettings()
+        isenabled = settings.authorizationStatus == .authorized && isenabled
     }
     
     func scheduleNotification(course: Course) {

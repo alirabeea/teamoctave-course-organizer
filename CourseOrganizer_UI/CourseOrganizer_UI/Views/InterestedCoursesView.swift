@@ -10,7 +10,8 @@ import SwiftUI
 struct InterestedCoursesView: View {
     @State private var newCourse = ""
     @State var user = UserInfo()
-    @State var notification = NotificationSwitch()
+    @EnvironmentObject var notification: NotificationSwitch
+    @Environment(\.scenePhase) var scenePhase
     //hard coded until we can pull from server
     private var courseOne = "CS 311"
     private var courseTwo = "CS 325"
@@ -29,12 +30,22 @@ struct InterestedCoursesView: View {
             }.font(.title)
             
             //enable notification stack
-            HStack(alignment: .bottom) {
-                Button("Enable Notification") {
-                    notification.enableNotification()
-                }
-                .buttonStyle(.bordered)
-            }.padding()
+            if notification.isenabled {
+                HStack(alignment: .bottom) {
+                    Button("Enable Notification") {
+                        notification.enableNotification()
+                    }
+                    .buttonStyle(.bordered)
+                }.padding()
+            } else {
+                HStack(alignment: .bottom) {
+                    Button("Schedule Notification") {
+                        notification.scheduleNotification(course: <#T##Course#>)
+                    }
+                    .buttonStyle(.bordered)
+                }.padding()
+                
+            }
             
             Spacer()
             HStack(alignment: .bottom){
@@ -46,12 +57,19 @@ struct InterestedCoursesView: View {
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                         .onSubmit{
-                            user.addInterestedCourse(course: newCourse)
+                            user.addInterestedCourse(course: Course(course__id: 1, course__verbose: newCourse))
                     }
                 }
             }
         }
         
+        .onChange(of: scenePhase) { newValue in
+            if newValue == .active {
+                task {
+                    await notification.getnotificationsettings()
+                }
+            }
+        }
     }
 
 }
@@ -60,5 +78,6 @@ struct InterestedCoursesView: View {
 struct InterestedCoursesView_Previews: PreviewProvider {
     static var previews: some View {
         InterestedCoursesView()
+            .environmentObject(NotificationSwitch())
     }
 }

@@ -11,11 +11,13 @@ import SwiftUI
 struct CourseOrganizer_UIApp: App {
     @StateObject var authentication = Authentication()
     @StateObject var userVM = UserViewModel()
+    @EnvironmentObject var notification: NotificationSwitch
     var body: some Scene {
         WindowGroup {
             if authentication.isValidated {
                 ContentView()
                     .environmentObject(authentication).environmentObject(userVM)
+                    .environmentObject(notification)
             }else{
                 LoginView()
                     .environmentObject(authentication).environmentObject(userVM)

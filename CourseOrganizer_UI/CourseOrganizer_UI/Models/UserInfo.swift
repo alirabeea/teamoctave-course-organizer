@@ -18,11 +18,14 @@ struct UserInfo: Codable, Identifiable {
     var interestedCourses: Array<Course> = []
     var requirementsNeeded: Array<Requirement> = []
 
-    func getInterestedCourses(){
+    func getInterestedCourses() -> Array<Course>{
         //make call to server, parse users interested courses and add to array (also add a buttom with fuction for each interested course to schedule a notification!)
+        
+        return interestedCourses
     }
-    func addInterestedCourse(course: String){
+    mutating func addInterestedCourse(course: Course){
         //post new course to server
+        self.interestedCourses.append(course)
     }
     
     
