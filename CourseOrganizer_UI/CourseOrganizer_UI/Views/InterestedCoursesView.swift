@@ -46,6 +46,7 @@ struct InterestedCoursesView: View {
                 }.padding()
                 
             }
+            
             Spacer()
             HStack(alignment: .bottom){
                 VStack{
