@@ -26,12 +26,14 @@ struct AddRequirementsView: View {
                     }
                 }
                 .onAppear(perform: self.loadCourseInfo)
+                // work around for Swift bug
                 Text("\(gradReq.count > 0 ? "no" : "yes")").hidden()
                     
                 Button("Add") {
                     if (singleSelection != nil) {
                         requirementViewModel.addRequirement(singleSelection!)
-                        courseInfoCSRF { json in
+                        self.courseInfoCSRF() { (json) in
+                            print(json)
                             let csrf = json.csrf_token
                             postCourseInfo(courses: requirementViewModel.getRequirement(), csrf: csrf, username: userVM.userInfo.username)
                         }
@@ -62,6 +64,7 @@ struct AddRequirementsView: View {
             }
         }.resume()
     }
+    
     struct Message: Decodable {
         let requirements: [Requirement]
         let csrf_token: String
@@ -84,9 +87,6 @@ struct AddRequirementsView: View {
             }
             
             var result: Message?
-            //print(data)
-            print(response)
-            
             //turn the result into a codable Register struct so that we can read the json data
             do{
                 result = try JSONDecoder().decode(Message.self, from: data)
@@ -138,9 +138,3 @@ struct AddRequirementsView: View {
         }).resume()
     }
 }
-
-//struct AddRequirementsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddRequirementsView(requirementViewModel: RequirementsViewModel())
-//    }
-//}

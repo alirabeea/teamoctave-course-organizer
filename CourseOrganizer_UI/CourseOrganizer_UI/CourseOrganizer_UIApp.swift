@@ -11,7 +11,7 @@ import SwiftUI
 struct CourseOrganizer_UIApp: App {
     @StateObject var authentication = Authentication()
     @StateObject var userVM = UserViewModel()
-    @EnvironmentObject var notification: NotificationSwitch
+    @StateObject var notification = NotificationSwitch()
     var body: some Scene {
         WindowGroup {
             if authentication.isValidated {
