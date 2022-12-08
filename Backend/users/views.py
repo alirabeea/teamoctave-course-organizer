@@ -51,7 +51,7 @@ class UserCourseView(View):
             data = json.loads(request.body)
             user = User.objects.get(django_user__username=data["username"])
             courses = data['courses']
-            for course in course:
+            for course in courses:
                 object = User_Course(user=user, course_id=course)
                 object.save()
             return JsonResponse({"status": "Success!", "status_code": 201})
