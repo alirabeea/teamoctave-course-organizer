@@ -18,7 +18,6 @@ struct RequirementsView: View {
                     .font(.largeTitle)
                 
                 List(requirementViewModel.chosenRequirement, id: \.self) { item in
-                    //Text(item.graduation_requirement);
                     Section(item.description) {
                         ForEach(item.courses,  id: \.self) { course in
                             Text("\(course.course__verbose)")

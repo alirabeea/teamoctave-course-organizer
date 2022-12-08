@@ -34,10 +34,6 @@ struct LoginCsrf: Codable {
     let csrf_token: String
 }
    
-
-struct Courses: Decodable, Encodable {
-    
-}
 // struct for sending and receiving reuirement
 struct Requirements: Decodable, Encodable {
     let fields: Array<String>

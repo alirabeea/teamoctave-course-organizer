@@ -39,7 +39,6 @@ class Server {
             }
             
         }.resume()
-        
     }
     
     struct Message: Decodable {
