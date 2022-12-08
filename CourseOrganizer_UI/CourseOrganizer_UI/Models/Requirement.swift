@@ -7,13 +7,8 @@
 
 import Foundation
 
-struct Requirement: Codable, Identifiable, Hashable{
+struct Requirement: Codable, Identifiable, Hashable {
     var id : Int
-//    let name: String
-//    let numCourses: Int
-//    var coursesTaken: Array<Course>
-//    var completed = false
-    //var allCourseSatisfy: Array<Course>
     var description: String
     var number_courses: Int
     var major__name: String

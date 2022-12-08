@@ -9,7 +9,7 @@ class Course(models.Model):
     verbose = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.number}"
+        return f"{self.verbose}"
 
     class Meta:
         unique_together = ('number', 'department')

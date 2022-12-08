@@ -25,4 +25,7 @@ class Requirement_Course(models.Model):
     requirement = models.ForeignKey(Requirement, on_delete=models.CASCADE, related_name="courses")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="requirements")
 
+    def __str__(self):
+        return f"{self.requirement}: {self.course}"
+
     # This table is optional. Same thing can be achieved using models.ManyToManyField

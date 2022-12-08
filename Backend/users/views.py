@@ -51,8 +51,8 @@ class UserCourseView(View):
             data = json.loads(request.body)
             user = User.objects.get(django_user__username=data["username"])
             courses = data['courses']
-            for course in course:
-                object = User_Course(user=user, course_id=course)
+            for course in courses:
+                object = User_Course(user=user, course_id=int(course))
                 object.save()
             return JsonResponse({"status": "Success!", "status_code": 201})
         except:

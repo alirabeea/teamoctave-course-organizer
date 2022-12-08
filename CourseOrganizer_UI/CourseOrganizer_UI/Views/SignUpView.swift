@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignUpView: View {
     let server = Server()
-    @StateObject private var userVM = UserViewModel();
+    @EnvironmentObject var userVM : UserViewModel;
     @State var message: String = ""
     // for comfirming password is same
     var body: some View {
@@ -28,7 +28,11 @@ struct SignUpView: View {
                 .frame(width: 300, height: 50)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
-
+            TextField("username", text: $userVM.userInfo.username)
+                .padding()
+                .frame(width: 300, height: 50)
+                .background(Color.black.opacity(0.05))
+                .cornerRadius(10)
             TextField("email", text: $userVM.userInfo.email)
                 .padding()
                 .keyboardType(.emailAddress)
@@ -53,7 +57,7 @@ struct SignUpView: View {
                 server.registerCSRF(){(json) in
                     print(json)
                     let csrf = json.csrf_token
-                    server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.email, password: userVM.userInfo.password, csrf: csrf){(isCreated) in
+                    server.createAccount(firstName: userVM.userInfo.firstName, netid: userVM.userInfo.netid, email: userVM.userInfo.email, username: userVM.userInfo.username, password: userVM.userInfo.password, csrf: csrf){(isCreated) in
                         if(isCreated){
                             LoginView()
                         }else{
@@ -83,10 +87,7 @@ struct SignUpView: View {
     struct Message: Codable{
         let data: String
     }
-        
-    
-    
-   
+
 }
     
 
