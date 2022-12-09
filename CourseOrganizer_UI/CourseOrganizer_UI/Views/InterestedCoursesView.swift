@@ -30,22 +30,23 @@ struct InterestedCoursesView: View {
             }.font(.title)
             
             //enable notification stack
-            if notification.isenabled {
                 HStack(alignment: .bottom) {
                     Button("Enable Notification") {
                         notification.enableNotification()
+                        notification.isenabled = true
+                        if !notification.isauthorized {
+                            notification.directsetting()
+                        }
                     }
                     .buttonStyle(.bordered)
-                }.padding()
-            } else {
-                HStack(alignment: .bottom) {
+                    .padding()
                     Button("Schedule Notification") {
-                        notification.scheduleNotification(course: Course(course__id: 1, course__verbose: newCourse))
+                        if notification.isauthorized{
+                            notification.scheduleNotification(course: Course(course__id: 1, course__verbose: newCourse))
+                        }
                     }
                     .buttonStyle(.bordered)
                 }.padding()
-                
-            }
             
             Spacer()
             HStack(alignment: .bottom){
