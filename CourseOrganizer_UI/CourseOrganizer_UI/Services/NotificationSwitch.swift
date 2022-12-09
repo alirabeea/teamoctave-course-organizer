@@ -7,11 +7,13 @@
 
 import Foundation
 import UserNotifications
+import UIKit
 
 
 class NotificationSwitch: ObservableObject {
     let notificationCenter = UNUserNotificationCenter.current()
     var isenabled = false
+    var isauthorized = false
     
     func enableNotification() {
         notificationCenter.requestAuthorization(options:[.alert,.badge,.sound]) { result, error in
@@ -24,7 +26,7 @@ class NotificationSwitch: ObservableObject {
     
     func getnotificationsettings() async {
         let settings = await notificationCenter.notificationSettings()
-        isenabled = settings.authorizationStatus == .authorized && isenabled
+        isauthorized = settings.authorizationStatus == .authorized && isenabled
     }
     
     func scheduleNotification(course: Course) {
@@ -50,6 +52,16 @@ class NotificationSwitch: ObservableObject {
     
     func abortscheduleNotification(course: Course) {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [course.id.uuidString])
+    }
+    
+    func directsetting() {
+        if let url = URL(string:UIApplication.openSettingsURLString) {
+            if UIApplication.shared.canOpenURL(url) {
+                Task {
+                    await UIApplication.shared.open(url)
+                }
+            }
+        }
     }
 }
 
