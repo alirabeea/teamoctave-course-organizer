@@ -46,19 +46,16 @@ class UserCourseView(View):
 
     # POST Data Format: {'courses': [1, 2, 3, 7, 16], 'username': 'blah blah}, where the numbers represent list of course ids 
     def post(self, request, *args, **kwargs):
-        try:
-            data = json.loads(request.body)
-            user = User.objects.get(django_user__username=data["username"])
-            requirements = data['courses']
-            for requirement in requirements:
-                req = Requirement.objects.get(pk=int(requirement))
-                courses = req.courses
-                for course in courses:
-                    object = User_Course(user=user, course=course.course)
-                    object.save()
-            return JsonResponse({"status": "Success!", "status_code": 201})
-        except:
-            return JsonResponse({"status": "Error!", "status_code": 401})
+        data = json.loads(request.body)
+        user = User.objects.get(django_user__username=data["username"])
+        requirements = data['courses']
+        for requirement in requirements:
+            req = Requirement.objects.get(pk=int(requirement))
+            courses = req.courses.all()
+            for course in courses:
+                object = User_Course(user=user, course=course.course)
+                object.save()
+        return JsonResponse({"status": "Success!", "status_code": 201})
 
 
 class LogoutView(LoginRequiredMixin, View):
