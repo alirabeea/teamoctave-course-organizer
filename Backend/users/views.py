@@ -6,6 +6,7 @@ from django.middleware.csrf import get_token
 from django.http import JsonResponse
 from .models import User, User_Course
 
+from graduation.models import Requirement
 import json
 
 class LoginView(View):
@@ -41,19 +42,20 @@ class RegisterView(View):
 class UserCourseView(View):
 
     def get(self, request, *args, **kwargs):
-        user = User.objects.get(django_user=request.user.id)
-        user_courses = User_Course.objects.filter(user=user).values()
-        return JsonResponse({"courses": list(user_courses), "csrf_token": get_token(request)})
+        return JsonResponse({"csrf_token": get_token(request)})
 
     # POST Data Format: {'courses': [1, 2, 3, 7, 16], 'username': 'blah blah}, where the numbers represent list of course ids 
     def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body)
             user = User.objects.get(django_user__username=data["username"])
-            courses = data['courses']
-            for course in courses:
-                object = User_Course(user=user, course_id=int(course))
-                object.save()
+            requirements = data['courses']
+            for requirement in requirements:
+                req = Requirement.objects.get(pk=int(requirement))
+                courses = req.courses
+                for course in courses:
+                    object = User_Course(user=user, course=course.course)
+                    object.save()
             return JsonResponse({"status": "Success!", "status_code": 201})
         except:
             return JsonResponse({"status": "Error!", "status_code": 401})
