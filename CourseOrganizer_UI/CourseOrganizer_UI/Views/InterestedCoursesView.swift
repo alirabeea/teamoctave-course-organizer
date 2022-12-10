@@ -42,7 +42,7 @@ struct InterestedCoursesView: View {
                     .padding()
                     Button("Schedule Notification") {
                         if notification.isauthorized{
-                            notification.scheduleNotification(course: Course(course__id: 1, course__verbose: newCourse))
+                            notification.scheduleNotification()
                         }
                     }
                     .buttonStyle(.bordered)

@@ -29,9 +29,9 @@ class NotificationSwitch: ObservableObject {
         isauthorized = settings.authorizationStatus == .authorized && isenabled
     }
     
-    func scheduleNotification(course: Course) {
+    func scheduleNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Scheduled course update for " + course.course__verbose + " !"
+        content.title = "Scheduled course update reminder!"
         content.body = "Your daily reminder to check your course info to see if there is an update for your interested courses!"
         content.sound = UNNotificationSound.default
         
@@ -42,14 +42,13 @@ class NotificationSwitch: ObservableObject {
         
 //        let trigger = UNCalendarNotificationTrigger(dateMatching: schedule, repeats: true)
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        let request = UNNotificationRequest(identifier: course.id.uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         notificationCenter.add(request) { error in
             if let error = error {
                 print(error)
-            } else {
-                print("Schedule success!")
             }
+            print("Schedule success!")
         }
     }
     
