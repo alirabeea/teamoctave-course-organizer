@@ -32,9 +32,7 @@ struct AddRequirementsView: View {
                 Button("Add") {
                     if (singleSelection != nil) {
                         requirementViewModel.addRequirement(singleSelection!)
-                        self.courseInfoCSRF() { (json) in
-                            print(json)
-                            let csrf = json.csrf_token
+                        self.courseInfoCSRF() { (csrf) in
                             postCourseInfo(courses: requirementViewModel.getRequirement(), csrf: csrf, username: userVM.userInfo.username)
                         }
                     }
@@ -70,8 +68,12 @@ struct AddRequirementsView: View {
         let csrf_token: String
     }
     
-    func courseInfoCSRF(completion: @escaping ((Message) -> Void)){
+    func courseInfoCSRF(completion: @escaping ((String) -> Void)){
 
+        struct Message: Decodable {
+            let csrf_token: String
+        }
+        
         guard let url = URL(string: "http://127.0.0.1:8000/users/courses/") else {
             print("api is down")
             return
@@ -91,7 +93,7 @@ struct AddRequirementsView: View {
             do{
                 result = try JSONDecoder().decode(Message.self, from: data)
                 //return the Register struct result in the completion
-                completion(result!)
+                completion(result!.csrf_token)
             }catch{
                 print("uh oh")
                 print(String(describing: error))
@@ -114,7 +116,6 @@ struct AddRequirementsView: View {
         for c in courses {
             course_id.append(c.id)
         }
-        print(userVM.userInfo.username)
         print(course_id)
         let requirementDataModel = Message(courses: course_id, username: username)
         
