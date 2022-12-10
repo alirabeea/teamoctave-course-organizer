@@ -41,9 +41,7 @@ struct InterestedCoursesView: View {
                     .buttonStyle(.bordered)
                     .padding()
                     Button("Schedule Notification") {
-                        if notification.isauthorized{
-                            notification.scheduleNotification()
-                        }
+                        notification.scheduleNotification()
                     }
                     .buttonStyle(.bordered)
                 }.padding()
