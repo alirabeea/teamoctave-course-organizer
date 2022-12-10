@@ -40,12 +40,15 @@ class NotificationSwitch: ObservableObject {
         schedule.weekday = 7 // everyday
         schedule.hour = 8 // at 8:00
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: schedule, repeats: true)
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: schedule, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
         let request = UNNotificationRequest(identifier: course.id.uuidString, content: content, trigger: trigger)
         
         notificationCenter.add(request) { error in
             if let error = error {
                 print(error)
+            } else {
+                print("Schedule success!")
             }
         }
     }
